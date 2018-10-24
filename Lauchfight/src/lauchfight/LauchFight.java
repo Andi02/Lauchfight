@@ -173,6 +173,8 @@ public class LauchFight {
 			// update the cooldown of every Factory
 			p.getFactorys()[0].addCooldown(-1);
 			p.getFactorys()[1].addCooldown(-1);
+			p.getFactorys()[2].addCooldown(-1);
+			p.getFactorys()[3].addCooldown(-1);
 
 //------------------------------------------------------------------------------
 //System.out.println(world.size());
