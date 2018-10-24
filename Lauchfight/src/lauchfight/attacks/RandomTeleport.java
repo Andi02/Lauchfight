@@ -29,25 +29,25 @@ public class RandomTeleport extends Attack {
 		if (teleport) {
 			int randX, randY;
 			do {
-				randX = ThreadLocalRandom.current().nextInt(-200, 200);
-			} while (Math.abs(randX) <= 30);
+				randX = ThreadLocalRandom.current().nextInt(-500, 500);
+			} while (Math.abs(randX) <= 70);
 			do {
-				randY = ThreadLocalRandom.current().nextInt(-200, 200);
-			} while (Math.abs(randY) <= 30);
+				randY = ThreadLocalRandom.current().nextInt(-500, 500);
+			} while (Math.abs(randY) <= 70);
 
 			xT = (int) (this.p.getX() + randX);
 			yT = (int) (this.p.getY() + randY);
 
 			if (xT < 1)
 				xT = 1;
-			if (xT > 450)
-				xT = 450;
+			if (xT > LauchFight.screenX - 50)
+				xT = LauchFight.screenX - 50;
 
 			yT = Screen.MouseY - 50;
 			if (yT < 1)
 				yT = 1;
-			if (yT > 420)
-				yT = 420;
+			if (yT > LauchFight.screenY - 80)
+				yT = LauchFight.screenY - 80;
 			teleport = false;
 		}
 

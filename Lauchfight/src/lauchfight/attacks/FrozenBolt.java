@@ -3,6 +3,7 @@ package lauchfight.attacks;
 import java.awt.Color;
 import java.awt.Graphics;
 import lauchfight.Attack;
+import lauchfight.LauchFight;
 import lauchfight.Player;
 import lauchfight.Screen;
 
@@ -47,7 +48,7 @@ public class FrozenBolt extends Attack {
 		g.setColor(Color.magenta);
 		g.fillOval((int) x, (int) y, 30, 30);
 
-		if (this.x >= 500 || this.y >= 500 || this.x <= 0 || this.y <= 0) {
+		if (this.x >= LauchFight.screenX || this.y >= LauchFight.screenY || this.x <= 0 || this.y <= 0) {
 			this.setAlive(false);
 		}
 

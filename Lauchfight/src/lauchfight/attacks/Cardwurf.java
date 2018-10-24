@@ -3,6 +3,7 @@ package lauchfight.attacks;
 import java.awt.Color;
 import java.awt.Graphics;
 import lauchfight.Attack;
+import lauchfight.LauchFight;
 import lauchfight.Player;
 import lauchfight.Screen;
 
@@ -48,7 +49,7 @@ public class Cardwurf extends Attack {
 		g.setColor(Color.BLUE);
 		g.fillRect((int) x, (int) y, 20, 30);
 
-		if (this.x >= 500 || this.y >= 500 || this.x <= 0 || this.y <= 0) {
+		if (this.x >= LauchFight.screenX || this.y >= LauchFight.screenY || this.x <= 0 || this.y <= 0) {
 			this.setAlive(false);
 		}
 

@@ -4,6 +4,7 @@ import java.awt.Color;
 import java.awt.Graphics;
 import java.util.concurrent.ThreadLocalRandom;
 import lauchfight.Attack;
+import lauchfight.LauchFight;
 import lauchfight.Player;
 
 public class LauchwurfSpawn extends Attack {
@@ -77,7 +78,7 @@ public class LauchwurfSpawn extends Attack {
 			created = true;
 		}
 		if (created) {
-			if (this.x >= 500 || this.y >= 500 || this.x <= -50 || this.y <= -50) {
+			if (this.x >= LauchFight.screenX || this.y >= LauchFight.screenY || this.x <= 0 || this.y <= 0) {
 				this.setAlive(false);
 			}
 

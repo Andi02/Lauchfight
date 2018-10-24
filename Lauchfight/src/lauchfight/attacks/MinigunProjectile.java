@@ -2,6 +2,7 @@ package lauchfight.attacks;
 
 import java.awt.Graphics;
 import lauchfight.Attack;
+import lauchfight.LauchFight;
 import lauchfight.Player;
 import lauchfight.Screen;
 
@@ -49,9 +50,9 @@ public class MinigunProjectile extends Attack {
 
         g.fillRect((int) x, (int) y, width, height);
         
-        if(this.x >= 500 || this.y >= 500 || this.x <= 0 || this.y <= 0) {
-    		this.setAlive(false);
-    	}
+        if (this.x >= LauchFight.screenX || this.y >= LauchFight.screenY || this.x <= 0 || this.y <= 0) {
+			this.setAlive(false);
+		}
         
         
         return g;

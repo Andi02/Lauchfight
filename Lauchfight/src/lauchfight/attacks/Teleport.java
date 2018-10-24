@@ -3,6 +3,7 @@ package lauchfight.attacks;
 import java.awt.Color;
 import java.awt.Graphics;
 import lauchfight.Attack;
+import lauchfight.LauchFight;
 import lauchfight.Player;
 import lauchfight.Screen;
 
@@ -25,14 +26,14 @@ public class Teleport extends Attack {
 			xT = Screen.MouseX - 25;
 			if (xT < 1)
 				xT = 1;
-			if (xT > 450)
-				xT = 450;
+			if (xT > LauchFight.screenX - 50)
+				xT = LauchFight.screenX - 50;
 
 			yT = Screen.MouseY - 50;
 			if (yT < 1)
 				yT = 1;
-			if (yT > 420)
-				yT = 420;
+			if (yT > LauchFight.screenY - 80)
+				yT = LauchFight.screenY - 80;
 			teleport = false;
 		}
 

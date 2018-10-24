@@ -33,7 +33,7 @@ public class LauchFight {
 
 		// create Players
 		Player p1 = new Player(
-				new AttackFactory[] { new PistolFactory(), new KnifeFactory(), new TestFactory(), new TestFactory() },
+				new AttackFactory[] { new TestFactory(), new TestFactory(), new TestFactory(), new TestFactory() },
 				0, 0, 100, 0.1f, player);
 		Player p2 = new Player(
 				new AttackFactory[] { new TestFactory(), new TestFactory(), new TestFactory(), new TestFactory() }, 0,
@@ -111,7 +111,7 @@ public class LauchFight {
 //------------------------------------------------------------------------------
 			// check if the player has pressed the MouseButton1 and the cooldown of the
 			// factory is 0
-			if (Screen.E && (p.getFactorys()[0]).cooldownZero()) {
+			if (Screen.MouseBut1 && (p.getFactorys()[0]).cooldownZero()) {
 				// if it is generate a new Attack object and save it int the Attack ArrayList
 				// get the attack form the 0th factory
 				world.add(p.getAttack(0));
