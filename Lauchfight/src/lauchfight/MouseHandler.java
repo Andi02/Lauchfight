@@ -22,9 +22,10 @@ public class MouseHandler implements MouseListener {
 
 		if (e.getButton() == MouseEvent.BUTTON1) {
 			Screen.MouseBut1 = true;
+			
 		}
 
-		if (e.getButton() == MouseEvent.BUTTON2) {
+		if (e.getButton() == MouseEvent.BUTTON3) {
 			Screen.MouseBut3 = true;
 		}
 		
@@ -40,7 +41,7 @@ public class MouseHandler implements MouseListener {
 			Screen.MouseBut1 = false;
 		}
 
-		if (e.getButton() == MouseEvent.BUTTON2) {
+		if (e.getButton() == MouseEvent.BUTTON3) {
 			Screen.MouseBut3 = false;
 		}
 

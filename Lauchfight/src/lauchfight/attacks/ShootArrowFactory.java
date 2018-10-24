@@ -7,8 +7,8 @@ import lauchfight.Player;
 
 public class ShootArrowFactory extends AttackFactory{
     
-    private long COOLDOWN = 1;
-    private long cooldownCounter = 1;
+    private long COOLDOWN = 10;
+    private long cooldownCounter = 10;
 
     public void addCooldown(long a){
         if (cooldownCounter > 0) cooldownCounter += a;
@@ -29,7 +29,7 @@ public class ShootArrowFactory extends AttackFactory{
 
     @Override
     public Attack create(Player pSend) {
-        return new Test(pSend);
+        return new ShootArrow(pSend);
     }
 
     
