@@ -66,12 +66,12 @@ public class Player {
     }
 
     public void addY(double a) {
-        if (this.y + a * speed > 0 && this.y + a * speed < LauchFight.screenX - 80)
+        if (this.y + a * speed > 0 && this.y + a * speed < LauchFight.screenY - 80)
             this.y = y + speed * a;
     }
 
     public void addX(double a) {
-        if (this.x + a * speed > 0 && this.x + a * speed < LauchFight.screenY - 50)
+        if (this.x + a * speed > 0 && this.x + a * speed < LauchFight.screenX - 50)
             this.x = x + speed * a;
     }
 
