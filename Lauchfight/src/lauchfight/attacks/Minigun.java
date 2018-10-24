@@ -18,16 +18,16 @@ public class Minigun extends Attack {
 		double xA = Screen.MouseX - pSend.getX() - 30;
 		double yA = Screen.MouseY - pSend.getY() - 60;
 
-		this.x = pSend.getX() + 13;
-		this.y = pSend.getY() + 13;
-
 		// save the player that created the attack
 		this.p = pSend;
 	}
 
 	@Override
 	public Graphics draw(Graphics g) {
-
+		
+		this.x = this.p.getX() + 13;
+		this.y = this.p.getY() + 13;
+		
 		// if the attack is used do stuff
 		g.setColor(Color.lightGray);
 		g.drawRect((int) x, (int) y, 25, 25);
