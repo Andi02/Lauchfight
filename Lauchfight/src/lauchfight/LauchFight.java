@@ -33,7 +33,7 @@ public class LauchFight {
 
         // create Players
         Player p1 = new Player(
-                new AttackFactory[] { new ShootArrowFactory(), new TestFactory(), new TestFactory(), new TestFactory() },
+                new AttackFactory[] { new MinigunFactory(), new TestFactory(), new TestFactory(), new TestFactory() },
                 0, 0, 100, 0.1f, player);
         Player p2 = new Player(
                 new AttackFactory[] { new TestFactory(), new TestFactory(), new TestFactory(), new TestFactory() }, 0,
@@ -162,10 +162,6 @@ public class LauchFight {
                     if (!world.get(i).isAlive()) {
                         world.remove(world.get(i));
                     }
-                    if (world.size() >= 1) {
-                        world.get(i).setPlayer(ps);
-                    }
-
                 }
             }
 
