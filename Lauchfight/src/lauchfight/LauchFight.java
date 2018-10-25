@@ -28,10 +28,6 @@ public class LauchFight {
 
 	public static ArrayList<Attack> world = new ArrayList<>();
 
-	public static List<Attack> getWorld() {
-		return Collections.unmodifiableList(world);
-	}
-
 	public static void main(String[] args) {
 		new LauchFight().core();
 	}
