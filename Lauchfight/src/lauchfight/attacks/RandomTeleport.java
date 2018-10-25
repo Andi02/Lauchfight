@@ -2,7 +2,6 @@ package lauchfight.attacks;
 
 import java.awt.Color;
 import java.awt.Graphics;
-import java.util.List;
 import java.util.concurrent.ThreadLocalRandom;
 
 import lauchfight.Attack;
@@ -24,7 +23,7 @@ public class RandomTeleport extends Attack {
 	}
 
 	@Override
-	public void phys(List<Attack> newAttacks) {
+	public void phys() {
 		count++;
 
 		if (teleport) {
@@ -74,7 +73,7 @@ public class RandomTeleport extends Attack {
 
 	@Override
 	public void onCollision(Player playerHit) {
-		LauchFight.world.add(Factory.create(playerHit));
+		LauchFight.aR.setNewAttacks(Factory.create(playerHit));
 	}
 
 }

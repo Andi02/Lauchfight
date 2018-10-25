@@ -1,7 +1,6 @@
 package lauchfight;
 
 import java.awt.Graphics;
-import java.util.List;
 
 public abstract class Attack{
 
@@ -68,7 +67,7 @@ public abstract class Attack{
 
 		return false;
 	}
-	public abstract void phys(List<Attack> newAttacks);
+	public abstract void phys();
 	
 	public abstract Graphics draw(Graphics g);
 

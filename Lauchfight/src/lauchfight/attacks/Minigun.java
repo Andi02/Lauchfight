@@ -18,10 +18,6 @@ public class Minigun extends Attack {
 
 	public Minigun(Player pSend) {
 
-		// the aim position
-		double xA = Screen.MouseX - pSend.getX() - 30;
-		double yA = Screen.MouseY - pSend.getY() - 60;
-
 		// save the player that created the attack
 		this.p = pSend;
 		pSpeed = p.getSpeed();
@@ -29,7 +25,7 @@ public class Minigun extends Attack {
 	}
 
 	@Override
-	public void phys(List<Attack> newAttack) {
+	public void phys() {
 		Screen.MouseX = (int) MouseInfo.getPointerInfo().getLocation().getX();
 		Screen.MouseY = (int) MouseInfo.getPointerInfo().getLocation().getY();
 
@@ -38,7 +34,7 @@ public class Minigun extends Attack {
 
 		count += 1;
 		if (count % 10 == 0) {
-			newAttack.add(Factory.create(this.p));
+			LauchFight.aR.setNewAttacks(Factory.create(this.p));
 		}
 		if (count == 1000) {
 			this.setAlive(false);

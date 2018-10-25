@@ -4,7 +4,6 @@ import java.awt.event.KeyListener;
 import java.awt.event.MouseListener;
 
 import javax.swing.*;
-import javax.swing.plaf.basic.BasicComboBoxUI.KeyHandler;
 
 public class Screen extends JFrame {
 

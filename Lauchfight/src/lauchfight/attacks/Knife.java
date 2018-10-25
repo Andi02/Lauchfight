@@ -2,8 +2,6 @@ package lauchfight.attacks;
 
 import java.awt.Color;
 import java.awt.Graphics;
-import java.util.List;
-
 import lauchfight.Attack;
 import lauchfight.Player;
 import lauchfight.Screen;
@@ -59,7 +57,7 @@ public class Knife extends Attack {
 	}
 
 	@Override
-	public void phys(List<Attack> newAttacks) {
+	public void phys() {
 
 		if (counter >= 150) {
 			this.setAlive(false);

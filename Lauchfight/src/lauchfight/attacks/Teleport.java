@@ -2,8 +2,6 @@ package lauchfight.attacks;
 
 import java.awt.Color;
 import java.awt.Graphics;
-import java.util.List;
-
 import lauchfight.Attack;
 import lauchfight.LauchFight;
 import lauchfight.Player;
@@ -21,7 +19,7 @@ public class Teleport extends Attack {
 	}
 
 	@Override
-	public void phys(List<Attack> newAttacks) {
+	public void phys() {
 		count++;
 
 		if (teleport) {

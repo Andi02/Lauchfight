@@ -2,7 +2,6 @@ package lauchfight.attacks;
 
 import java.awt.Color;
 import java.awt.Graphics;
-import java.util.List;
 import java.util.concurrent.ThreadLocalRandom;
 
 import lauchfight.Attack;
@@ -48,7 +47,7 @@ public class MinigunProjectile extends Attack {
 	}
 
 	@Override
-	public void phys(List<Attack> newAttack) {
+	public void phys() {
 		addX(speed * Math.cos(angle));
 		addY(speed * Math.sin(angle));
 
@@ -73,7 +72,7 @@ public class MinigunProjectile extends Attack {
 		// do stuff with the player if it gets hit!
 
 		if (playerHit != this.p) {
-			playerHit.addLife(-2);
+			playerHit.addLife(-3);
 			this.setAlive(false);
 		}
 

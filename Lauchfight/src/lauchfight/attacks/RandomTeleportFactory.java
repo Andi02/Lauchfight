@@ -6,8 +6,8 @@ import lauchfight.Player;
 
 public class RandomTeleportFactory extends AttackFactory {
 
-	private long COOLDOWN = 5000;
-	private long cooldownCounter = 5000;
+	private long COOLDOWN = 4000;
+	private long cooldownCounter = 4000;
 
 	public void addCooldown(long a) {
 		if (cooldownCounter > 0)

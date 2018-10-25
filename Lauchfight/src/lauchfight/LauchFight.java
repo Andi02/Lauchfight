@@ -11,6 +11,8 @@ import lauchfight.attacks.*;
 
 public class LauchFight {
 
+	public static AttackRegistry aR;
+	private List<Attack> newAttacks = new ArrayList<>();
 	public Player[] ps;
 	public Canvas c;
 	private int drawCount = 16;
@@ -30,6 +32,10 @@ public class LauchFight {
 		new LauchFight().core();
 	}
 
+	public LauchFight() {
+		aR = new AttackRegistry(newAttacks);
+	}
+
 	public void core() {
 
 		// set the player you are
@@ -38,7 +44,7 @@ public class LauchFight {
 
 		// create Players
 		Player p1 = new Player(
-				new AttackFactory[] { new LauchfeldFactory(), new TestFactory(), new TestFactory(), new TestFactory() },
+				new AttackFactory[] { new MinigunFactory(), new LauchfeldFactory(), new RandomTeleportFactory(), new TestFactory() },
 				0, 0, 100, 0.1f, player);
 		Player p2 = new Player(
 				new AttackFactory[] { new TestFactory(), new TestFactory(), new TestFactory(), new TestFactory() }, 0,
@@ -75,16 +81,16 @@ public class LauchFight {
 	public void gameLoop() {
 
 		while (true) {
-			
-			
+
 			Player p = ps[player];
-			List<Attack> newAttacks = new ArrayList<>();
+
 			// physic update
 			for (Attack a : world) {
-				a.phys(newAttacks);
+				a.phys();
 			}
-			
 
+			world.addAll(newAttacks);
+			newAttacks.clear();
 			// ------------------------------------------------------------------------------
 			// get the data form online and send it as well!
 
@@ -127,7 +133,7 @@ public class LauchFight {
 			if (Screen.MouseBut1 && (p.getFactorys()[0]).cooldownZero()) {
 				// if it is generate a new Attack object and save it int the Attack ArrayList
 				// get the attack form the 0th factory
-				newAttacks.add(p.getAttack(0));
+				world.add(p.getAttack(0));
 				// reset the cooldown of the factory
 				p.getFactorys()[0].resetCooldown();
 			}
@@ -137,7 +143,7 @@ public class LauchFight {
 			if (Screen.MouseBut3 && (p.getFactorys()[1]).cooldownZero()) {
 				// if it is generate a new Attack object and save it int the Attack ArrayList
 				// get the attack form the 0th factory
-				newAttacks.add(p.getAttack(1));
+				world.add(p.getAttack(1));
 				// reset the cooldown of the factory
 				p.getFactorys()[1].resetCooldown();
 			}
@@ -145,7 +151,7 @@ public class LauchFight {
 			if (Screen.E && (p.getFactorys()[2]).cooldownZero()) {
 				// if it is generate a new Attack object and save it int the Attack ArrayList
 				// get the attack form the 0th factory
-				newAttacks.add(p.getAttack(2));
+				world.add(p.getAttack(2));
 				// reset the cooldown of the factory
 				p.getFactorys()[2].resetCooldown();
 			}
@@ -153,7 +159,7 @@ public class LauchFight {
 			if (Screen.Q && (p.getFactorys()[3]).cooldownZero()) {
 				// if it is generate a new Attack object and save it int the Attack ArrayList
 				// get the attack form the 0th factory
-				newAttacks.add(p.getAttack(3));
+				world.add(p.getAttack(3));
 				// reset the cooldown of the factory
 				p.getFactorys()[3].resetCooldown();
 			}
@@ -200,7 +206,6 @@ public class LauchFight {
 				c.repaint();
 				drawCount = 0;
 			}
-			System.out.println(world.size());
 
 			try {
 				Thread.sleep(1);

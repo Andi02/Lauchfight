@@ -2,8 +2,6 @@ package lauchfight.attacks;
 
 import java.awt.Color;
 import java.awt.Graphics;
-import java.util.List;
-
 import lauchfight.Attack;
 import lauchfight.LauchFight;
 import lauchfight.Player;
@@ -51,7 +49,7 @@ public class Lauchfeld extends Attack {
 		this.p = pSend;
 	}
 	@Override
-	public void phys(List<Attack> newAttacks) {
+	public void phys() {
 		if (this.x >= LauchFight.screenX || this.y >= LauchFight.screenY || this.x <= 0 || this.y <= 0) {
 			this.setAlive(false);
 		}
@@ -85,41 +83,41 @@ public class Lauchfeld extends Attack {
 			switch ((int) time) {
 			case 8:
 				Factory.setCount(7);
-				LauchFight.world.add(Factory.create(this.p));
+				LauchFight.aR.setNewAttacks(Factory.create(this.p));
 				time = 100;
 			case 7:
 				Factory.setCount(6);
-				LauchFight.world.add(Factory.create(this.p));
+				LauchFight.aR.setNewAttacks(Factory.create(this.p));
 				if (time < 100)
 					time = 110;
 			case 6:
 				Factory.setCount(5);
-				LauchFight.world.add(Factory.create(this.p));
+				LauchFight.aR.setNewAttacks(Factory.create(this.p));
 				if (time < 100)
 					time = 120;
 			case 5:
 				Factory.setCount(4);
-				LauchFight.world.add(Factory.create(this.p));
+				LauchFight.aR.setNewAttacks(Factory.create(this.p));
 				if (time < 100)
 					time = 130;
 			case 4:
 				Factory.setCount(3);
-				LauchFight.world.add(Factory.create(this.p));
+				LauchFight.aR.setNewAttacks(Factory.create(this.p));
 				if (time < 100)
 					time = 140;
 			case 3:
 				Factory.setCount(2);
-				LauchFight.world.add(Factory.create(this.p));
+				LauchFight.aR.setNewAttacks(Factory.create(this.p));
 				if (time < 100)
 					time = 150;
 			case 2:
 				Factory.setCount(1);
-				LauchFight.world.add(Factory.create(this.p));
+				LauchFight.aR.setNewAttacks(Factory.create(this.p));
 				if (time < 100)
 					time = 160;
 			case 1:
 				Factory.setCount(0);
-				LauchFight.world.add(Factory.create(this.p));
+				LauchFight.aR.setNewAttacks(Factory.create(this.p));
 				if (time < 100)
 					time = 170;
 			case 0:

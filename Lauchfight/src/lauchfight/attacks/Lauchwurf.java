@@ -2,8 +2,6 @@ package lauchfight.attacks;
 
 import java.awt.Color;
 import java.awt.Graphics;
-import java.util.List;
-
 import lauchfight.Attack;
 import lauchfight.LauchFight;
 import lauchfight.Player;
@@ -64,7 +62,7 @@ public class Lauchwurf extends Attack {
 	}
 
 	@Override
-	public void phys(List<Attack> newAttacks) {
+	public void phys() {
 		if (this.x >= LauchFight.screenX || this.y >= LauchFight.screenY || this.x <= 0 || this.y <= 0) {
 			this.setAlive(false);
 		}
