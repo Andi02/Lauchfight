@@ -7,7 +7,10 @@ import java.util.List;
 
 import javax.swing.JComponent;
 
-import lauchfight.attacks.*;
+import lauchfight.attacks.TestFactory;
+import lauchfight.attacks.lauch.LauchfeldFactory;
+import lauchfight.attacks.mage.FireballFactory;
+import lauchfight.attacks.trickster.RandomTeleportFactory;
 
 public class LauchFight {
 
@@ -43,9 +46,8 @@ public class LauchFight {
 		// every player in one round has a unique number
 
 		// create Players
-		Player p1 = new Player(
-				new AttackFactory[] { new MinigunFactory(), new LauchfeldFactory(), new RandomTeleportFactory(), new TestFactory() },
-				0, 0, 100, 0.1f, player);
+		Player p1 = new Player(new AttackFactory[] { new FireballFactory(), new LauchfeldFactory(),
+				new RandomTeleportFactory(), new TestFactory() }, 0, 0, 100, 0.1f, player);
 		Player p2 = new Player(
 				new AttackFactory[] { new TestFactory(), new TestFactory(), new TestFactory(), new TestFactory() }, 0,
 				0, 100, 0.1f, player);
@@ -55,7 +57,6 @@ public class LauchFight {
 		// create the Canvas
 
 		c = new Canvas();
-		drawCount++;
 		// create the Screen
 		Screen s = new Screen(screenX, screenY, "hallo");
 
@@ -165,7 +166,7 @@ public class LauchFight {
 			}
 
 			// ------------------------------------------------------------------------------
-			world.addAll(newAttacks);
+
 			// for every Player
 
 			for (Player currentP : ps) {
@@ -211,7 +212,6 @@ public class LauchFight {
 				Thread.sleep(1);
 			} catch (Exception e) {
 			}
-
 		}
 
 	}
