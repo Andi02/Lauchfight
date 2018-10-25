@@ -1,8 +1,9 @@
 package lauchfight;
 
 import java.awt.Graphics;
+import java.util.List;
 
-public abstract class Attack {
+public abstract class Attack{
 
 	public int width = 10;
 	public int height = 10;
@@ -67,7 +68,8 @@ public abstract class Attack {
 
 		return false;
 	}
-
+	public abstract void phys(List<Attack> newAttacks);
+	
 	public abstract Graphics draw(Graphics g);
 
 	public abstract void onCollision(Player playerHit);
