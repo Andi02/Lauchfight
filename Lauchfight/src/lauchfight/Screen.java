@@ -32,7 +32,7 @@ public class Screen extends JFrame {
 
 		this.setVisible(true);
 		
-		this.setAlwaysOnTop(true);
+	//	this.setAlwaysOnTop(true);
 	}
 
 	public void setCanvas(JComponent canvas) {

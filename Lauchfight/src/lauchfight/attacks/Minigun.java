@@ -27,15 +27,16 @@ public class Minigun extends Attack {
 		pSpeed = p.getSpeed();
 		this.p.setSpeed(0f);
 	}
+
 	@Override
 	public void phys(List<Attack> newAttack) {
 		Screen.MouseX = (int) MouseInfo.getPointerInfo().getLocation().getX();
 		Screen.MouseY = (int) MouseInfo.getPointerInfo().getLocation().getY();
-		
+
 		this.x = this.p.getX() + 13;
 		this.y = this.p.getY() + 13;
-		
-		count += 2;
+
+		count += 1;
 		if (count % 10 == 0) {
 			newAttack.add(Factory.create(this.p));
 		}
@@ -43,12 +44,11 @@ public class Minigun extends Attack {
 			this.setAlive(false);
 			this.p.setSpeed((float) pSpeed);
 		}
-		
+
 	}
+
 	@Override
 	public Graphics draw(Graphics g) {
-		
-		
 
 		// if the attack is used do stuff
 		g.setColor(Color.lightGray);
@@ -60,7 +60,4 @@ public class Minigun extends Attack {
 	@Override
 	public void onCollision(Player playerHit) {
 	}
-
-
-
 }

@@ -2,6 +2,8 @@ package lauchfight.attacks;
 
 import java.awt.Color;
 import java.awt.Graphics;
+import java.util.List;
+
 import lauchfight.Attack;
 import lauchfight.LauchFight;
 import lauchfight.Player;
@@ -48,12 +50,8 @@ public class Lauchfeld extends Attack {
 		// save the player that created the attack
 		this.p = pSend;
 	}
-
 	@Override
-	public Graphics draw(Graphics g) {
-
-		// if the attack is used do stuff
-
+	public void phys(List<Attack> newAttacks) {
 		if (this.x >= LauchFight.screenX || this.y >= LauchFight.screenY || this.x <= 0 || this.y <= 0) {
 			this.setAlive(false);
 		}
@@ -61,13 +59,22 @@ public class Lauchfeld extends Attack {
 			time += 0.09143;
 		if (time >= 181)
 			this.setAlive(false);
-		g.setColor(Color.green);
-		g.fillRect((int) x, (int) y, width, height);
-
+		
 		if (time <= 10)
 			time += 0.004;
 		if (time >= 8)
 			onCollision(this.p);
+		
+	}
+	@Override
+	public Graphics draw(Graphics g) {
+
+		// if the attack is used do stuff
+		
+		g.setColor(Color.green);
+		g.fillRect((int) x, (int) y, width, height);
+
+
 		return g;
 	}
 

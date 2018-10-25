@@ -1,6 +1,8 @@
 package lauchfight.attacks;
 
 import java.awt.Graphics;
+import java.util.List;
+
 import lauchfight.Attack;
 import lauchfight.Player;
 
@@ -18,10 +20,7 @@ public class Speeed extends Attack {
 	}
 
 	@Override
-	public Graphics draw(Graphics g) {
-
-		// if the attack is used do stuff
-
+	public void phys(List<Attack> newAttacks) {
 		if (counter > 0) {
 			counter--;
 		} else if (counter <= 0) {
@@ -29,6 +28,13 @@ public class Speeed extends Attack {
 			counter = 2500;
 			setAlive(false);
 		}
+
+	}
+
+	@Override
+	public Graphics draw(Graphics g) {
+
+		// if the attack is used do stuff
 
 		return g;
 	}

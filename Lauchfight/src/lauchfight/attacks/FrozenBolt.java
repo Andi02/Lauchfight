@@ -2,6 +2,8 @@ package lauchfight.attacks;
 
 import java.awt.Color;
 import java.awt.Graphics;
+import java.util.List;
+
 import lauchfight.Attack;
 import lauchfight.LauchFight;
 import lauchfight.Player;
@@ -23,7 +25,7 @@ public class FrozenBolt extends Attack {
 	}
 
 	public FrozenBolt(Player pSend) {
-		
+
 		// the aim position
 		double xA = Screen.MouseX - pSend.getX() - 30;
 		double yA = Screen.MouseY - pSend.getY() - 60;
@@ -40,17 +42,23 @@ public class FrozenBolt extends Attack {
 	}
 
 	@Override
-	public Graphics draw(Graphics g) {
-
-		// if the attack is used do stuff
+	public void phys(List<Attack> newAttacks) {
 		addX(vX);
 		addY(vY);
-		g.setColor(Color.magenta);
-		g.fillOval((int) x, (int) y, 30, 30);
 
 		if (this.x >= LauchFight.screenX || this.y >= LauchFight.screenY || this.x <= 0 || this.y <= 0) {
 			this.setAlive(false);
 		}
+
+	}
+
+	@Override
+	public Graphics draw(Graphics g) {
+
+		// if the attack is used do stuff
+
+		g.setColor(Color.magenta);
+		g.fillOval((int) x, (int) y, 30, 30);
 
 		return g;
 	}

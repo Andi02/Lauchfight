@@ -2,6 +2,8 @@ package lauchfight.attacks;
 
 import java.awt.Color;
 import java.awt.Graphics;
+import java.util.List;
+
 import lauchfight.Attack;
 import lauchfight.LauchFight;
 import lauchfight.Player;
@@ -19,7 +21,7 @@ public class Teleport extends Attack {
 	}
 
 	@Override
-	public Graphics draw(Graphics g) {
+	public void phys(List<Attack> newAttacks) {
 		count++;
 
 		if (teleport) {
@@ -44,6 +46,11 @@ public class Teleport extends Attack {
 
 			this.setAlive(false);
 		}
+
+	}
+
+	@Override
+	public Graphics draw(Graphics g) {
 
 		g.setColor(Color.magenta);
 		g.fillRect(xT, yT, 50, 50);

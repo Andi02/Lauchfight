@@ -63,7 +63,6 @@ public class MinigunProjectile extends Attack {
 		// if the attack is used do stuff
 
 		g.setColor(Color.lightGray);
-		g.fillRect((int) x - 5, (int) y - 5, width, height);
 		g.fillRect((int) x, (int) y, width, height);
 
 		return g;

@@ -7,8 +7,8 @@ import lauchfight.Player;
 
 public class MinigunFactory extends AttackFactory{
     
-    private long COOLDOWN = 1;
-    private long cooldownCounter = 1;
+    private long COOLDOWN = 1000;
+    private long cooldownCounter = 1000;
 
     public void addCooldown(long a){
         if (cooldownCounter > 0) cooldownCounter += a;

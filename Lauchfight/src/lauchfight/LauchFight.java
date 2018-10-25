@@ -2,14 +2,12 @@ package lauchfight;
 
 import java.awt.Graphics;
 import java.util.ArrayList;
-import java.util.Collections;
 import java.util.Iterator;
 import java.util.List;
 
 import javax.swing.JComponent;
 
-import lauchfight.attacks.MinigunFactory;
-import lauchfight.attacks.TestFactory;
+import lauchfight.attacks.*;
 
 public class LauchFight {
 
@@ -40,7 +38,7 @@ public class LauchFight {
 
 		// create Players
 		Player p1 = new Player(
-				new AttackFactory[] { new MinigunFactory(), new TestFactory(), new TestFactory(), new TestFactory() },
+				new AttackFactory[] { new LauchfeldFactory(), new TestFactory(), new TestFactory(), new TestFactory() },
 				0, 0, 100, 0.1f, player);
 		Player p2 = new Player(
 				new AttackFactory[] { new TestFactory(), new TestFactory(), new TestFactory(), new TestFactory() }, 0,

@@ -1,6 +1,8 @@
 package lauchfight.attacks;
 
 import java.awt.Graphics;
+import java.util.List;
+
 import lauchfight.Attack;
 import lauchfight.LauchFight;
 import lauchfight.Player;
@@ -39,17 +41,22 @@ public class Test extends Attack {
 	}
 
 	@Override
-	public Graphics draw(Graphics g) {
-
-		// if the attack is used do stuff
+	public void phys(List<Attack> newAttacks) {
 		addX(vX);
 		addY(vY);
-
-		g.fillRect((int) x, (int) y, width, height);
 
 		if (this.x >= LauchFight.screenX || this.y >= LauchFight.screenY || this.x <= 0 || this.y <= 0) {
 			this.setAlive(false);
 		}
+
+	}
+
+	@Override
+	public Graphics draw(Graphics g) {
+
+		// if the attack is used do stuff
+
+		g.fillRect((int) x, (int) y, width, height);
 
 		return g;
 	}

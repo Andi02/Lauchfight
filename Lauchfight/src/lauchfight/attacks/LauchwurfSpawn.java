@@ -2,6 +2,7 @@ package lauchfight.attacks;
 
 import java.awt.Color;
 import java.awt.Graphics;
+import java.util.List;
 import java.util.concurrent.ThreadLocalRandom;
 import lauchfight.Attack;
 import lauchfight.LauchFight;
@@ -39,12 +40,10 @@ public class LauchwurfSpawn extends Attack {
 		this.lauchfeldX = lauchfeldX;
 		this.lauchfeldY = lauchfeldY;
 	}
-
 	@Override
-	public Graphics draw(Graphics g) {
+	public void phys(List<Attack> newAttacks) {
 		if (count > -1 && count < 10)
 			count -= 0.008;
-		// if the attack is used do stuff
 		if (count <= 0) {
 			this.x = this.lauchfeldX + 20;
 			this.y = this.lauchfeldY + 20;
@@ -84,6 +83,11 @@ public class LauchwurfSpawn extends Attack {
 
 			addX(vX);
 			addY(vY);
+		}
+	}
+	@Override
+	public Graphics draw(Graphics g) {
+		if (created) {
 			g.setColor(Color.green);
 			g.fillRect((int) x, (int) y, width, height);
 		}

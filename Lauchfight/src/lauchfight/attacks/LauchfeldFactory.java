@@ -6,8 +6,8 @@ import lauchfight.Player;
 
 public class LauchfeldFactory extends AttackFactory {
 
-	private long COOLDOWN = 15000;
-	private long cooldownCounter = 15000;
+	private long COOLDOWN = 1500;
+	private long cooldownCounter = 1500;
 
 	public void addCooldown(long a) {
 		if (cooldownCounter > 0)
