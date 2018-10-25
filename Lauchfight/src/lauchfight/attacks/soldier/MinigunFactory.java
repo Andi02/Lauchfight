@@ -1,11 +1,11 @@
-package lauchfight.attacks;
+package lauchfight.attacks.soldier;
 
 import lauchfight.Attack;
 import lauchfight.AttackFactory;
 import lauchfight.Player;
 
 
-public class MinigunProjectileFactory extends AttackFactory{
+public class MinigunFactory extends AttackFactory{
     
     private long COOLDOWN = 1000;
     private long cooldownCounter = 1000;
@@ -24,12 +24,12 @@ public class MinigunProjectileFactory extends AttackFactory{
         cooldownCounter = COOLDOWN;
     }
     
-    public MinigunProjectileFactory(){}
+    public MinigunFactory(){}
 
 
     @Override
     public Attack create(Player pSend) {
-        return new MinigunProjectile(pSend);
+        return new Minigun(pSend);
     }
 
     

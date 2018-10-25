@@ -1,15 +1,14 @@
-package lauchfight.attacks;
+package lauchfight.attacks.soldier;
 
-import java.awt.Color;
 import java.awt.Graphics;
 import lauchfight.Attack;
 import lauchfight.LauchFight;
 import lauchfight.Player;
 import lauchfight.Screen;
 
-public class FrozenBolt extends Attack {
+public class Pistol extends Attack {
 
-	private float speed = 0.33f;
+	private float speed = 0.75f;
 
 	private double vX;
 	private double vY;
@@ -22,14 +21,14 @@ public class FrozenBolt extends Attack {
 		this.y = (y + a * speed);
 	}
 
-	public FrozenBolt(Player pSend) {
+	public Pistol(Player pSend) {
 
 		// the aim position
 		double xA = Screen.MouseX - pSend.getX() - 30;
 		double yA = Screen.MouseY - pSend.getY() - 60;
 
-		this.x = pSend.getX() + 10;
-		this.y = pSend.getY() + 10;
+		this.x = pSend.getX() + 25;
+		this.y = pSend.getY() + 25;
 
 		double k = Math.sqrt((speed * speed) / (xA * xA + yA * yA));
 		vX = xA * k;
@@ -41,6 +40,7 @@ public class FrozenBolt extends Attack {
 
 	@Override
 	public void phys() {
+
 		addX(vX);
 		addY(vY);
 
@@ -55,8 +55,7 @@ public class FrozenBolt extends Attack {
 
 		// if the attack is used do stuff
 
-		g.setColor(Color.magenta);
-		g.fillOval((int) x, (int) y, 30, 30);
+		g.fillRect((int) x, (int) y, width, height);
 
 		return g;
 	}
@@ -66,7 +65,7 @@ public class FrozenBolt extends Attack {
 		// do stuff with the player if it gets hit!
 
 		if (playerHit != this.p) {
-			playerHit.addLife(-40);
+			playerHit.addLife(-15);
 			this.setAlive(false);
 		}
 

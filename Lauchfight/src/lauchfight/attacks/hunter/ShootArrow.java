@@ -1,4 +1,4 @@
-package lauchfight.attacks;
+package lauchfight.attacks.hunter;
 
 import java.awt.Graphics;
 import lauchfight.Attack;

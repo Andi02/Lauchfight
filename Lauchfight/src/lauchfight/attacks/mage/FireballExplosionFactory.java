@@ -1,10 +1,21 @@
-package lauchfight.attacks;
+package lauchfight.attacks.mage;
 
 import lauchfight.Attack;
 import lauchfight.AttackFactory;
 import lauchfight.Player;
 
-public class FrozenBoltFactory extends AttackFactory {
+public class FireballExplosionFactory extends AttackFactory {
+
+	private int fireballX = 0;
+	private int fireballY = 0;
+
+	public void setFireballX(int fireballX) {
+		this.fireballX = fireballX;
+	}
+
+	public void setFireballY(int fireballY) {
+		this.fireballY = fireballY;
+	}
 
 	private long COOLDOWN = 2000;
 	private long cooldownCounter = 2000;
@@ -25,12 +36,12 @@ public class FrozenBoltFactory extends AttackFactory {
 		cooldownCounter = COOLDOWN;
 	}
 
-	public FrozenBoltFactory() {
+	public FireballExplosionFactory() {
 	}
 
 	@Override
 	public Attack create(Player pSend) {
-		return new FrozenBolt(pSend);
+		return new FireballExplosion(pSend, fireballX, fireballY);
 	}
 
 }

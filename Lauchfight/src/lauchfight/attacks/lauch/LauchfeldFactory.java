@@ -1,13 +1,13 @@
-package lauchfight.attacks;
+package lauchfight.attacks.lauch;
 
 import lauchfight.Attack;
 import lauchfight.AttackFactory;
 import lauchfight.Player;
 
-public class RandomTeleportFactory extends AttackFactory {
+public class LauchfeldFactory extends AttackFactory {
 
-	private long COOLDOWN = 4000;
-	private long cooldownCounter = 4000;
+	private long COOLDOWN = 1500;
+	private long cooldownCounter = 1500;
 
 	public void addCooldown(long a) {
 		if (cooldownCounter > 0)
@@ -25,12 +25,12 @@ public class RandomTeleportFactory extends AttackFactory {
 		cooldownCounter = COOLDOWN;
 	}
 
-	public RandomTeleportFactory() {
+	public LauchfeldFactory() {
 	}
 
 	@Override
 	public Attack create(Player pSend) {
-		return new RandomTeleport(pSend);
+		return new Lauchfeld(pSend);
 	}
 
 }

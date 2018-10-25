@@ -1,14 +1,16 @@
-package lauchfight.attacks;
+package lauchfight.attacks.mage;
 
+import java.awt.Color;
 import java.awt.Graphics;
+
 import lauchfight.Attack;
 import lauchfight.LauchFight;
 import lauchfight.Player;
 import lauchfight.Screen;
 
-public class Pistol extends Attack {
+public class FrozenBolt extends Attack {
 
-	private float speed = 0.75f;
+	private float speed = 0.33f;
 
 	private double vX;
 	private double vY;
@@ -21,26 +23,26 @@ public class Pistol extends Attack {
 		this.y = (y + a * speed);
 	}
 
-	public Pistol(Player pSend) {
+	public FrozenBolt(Player pSend) {
 
-		// the aim position
+		width = 30;
+		height = 30;
+
 		double xA = Screen.MouseX - pSend.getX() - 30;
 		double yA = Screen.MouseY - pSend.getY() - 60;
 
-		this.x = pSend.getX() + 25;
-		this.y = pSend.getY() + 25;
+		this.x = pSend.getX() + 10;
+		this.y = pSend.getY() + 10;
 
 		double k = Math.sqrt((speed * speed) / (xA * xA + yA * yA));
 		vX = xA * k;
 		vY = yA * k;
 
-		// save the player that created the attack
 		this.p = pSend;
 	}
 
 	@Override
 	public void phys() {
-
 		addX(vX);
 		addY(vY);
 
@@ -53,19 +55,17 @@ public class Pistol extends Attack {
 	@Override
 	public Graphics draw(Graphics g) {
 
-		// if the attack is used do stuff
-
-		g.fillRect((int) x, (int) y, width, height);
+		g.setColor(Color.magenta);
+		g.fillOval((int) x, (int) y, width, height);
 
 		return g;
 	}
 
 	@Override
 	public void onCollision(Player playerHit) {
-		// do stuff with the player if it gets hit!
 
 		if (playerHit != this.p) {
-			playerHit.addLife(-15);
+			playerHit.addLife(-40);
 			this.setAlive(false);
 		}
 

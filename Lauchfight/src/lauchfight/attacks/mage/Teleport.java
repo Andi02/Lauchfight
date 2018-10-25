@@ -1,25 +1,21 @@
-package lauchfight.attacks;
+package lauchfight.attacks.mage;
 
 import java.awt.Color;
 import java.awt.Graphics;
-import java.util.concurrent.ThreadLocalRandom;
-
 import lauchfight.Attack;
 import lauchfight.LauchFight;
 import lauchfight.Player;
 import lauchfight.Screen;
 
-public class RandomTeleport extends Attack {
+public class Teleport extends Attack {
 	private int count = 0;
 	private boolean teleport;
 	private int xT, yT;
-	private CardwurfFactory Factory = new CardwurfFactory();
 
-	public RandomTeleport(Player pSend) {
+	public Teleport(Player pSend) {
 		// save the player that created the attack
 		this.p = pSend;
 		teleport = true;
-
 	}
 
 	@Override
@@ -27,17 +23,7 @@ public class RandomTeleport extends Attack {
 		count++;
 
 		if (teleport) {
-			int randX, randY;
-			do {
-				randX = ThreadLocalRandom.current().nextInt(-500, 500);
-			} while (Math.abs(randX) <= 70);
-			do {
-				randY = ThreadLocalRandom.current().nextInt(-500, 500);
-			} while (Math.abs(randY) <= 70);
-
-			xT = (int) (this.p.getX() + randX);
-			yT = (int) (this.p.getY() + randY);
-
+			xT = Screen.MouseX - 25;
 			if (xT < 1)
 				xT = 1;
 			if (xT > LauchFight.screenX - 50)
@@ -51,13 +37,12 @@ public class RandomTeleport extends Attack {
 			teleport = false;
 		}
 
-		if (count == 500) {
+		if (count == 1100) {
 			count = 0;
 			this.p.setX(xT);
 			this.p.setY(yT);
 
 			this.setAlive(false);
-			this.onCollision(this.p);
 		}
 
 	}
@@ -73,7 +58,6 @@ public class RandomTeleport extends Attack {
 
 	@Override
 	public void onCollision(Player playerHit) {
-		LauchFight.aR.setNewAttacks(Factory.create(playerHit));
 	}
 
 }

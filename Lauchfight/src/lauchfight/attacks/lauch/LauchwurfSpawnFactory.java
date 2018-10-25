@@ -1,4 +1,4 @@
-package lauchfight.attacks;
+package lauchfight.attacks.lauch;
 
 import lauchfight.Attack;
 import lauchfight.AttackFactory;

@@ -1,19 +1,18 @@
-package lauchfight.attacks;
+package lauchfight.attacks.trickster;
 
 import java.awt.Color;
 import java.awt.Graphics;
-import java.util.concurrent.ThreadLocalRandom;
-
 import lauchfight.Attack;
 import lauchfight.LauchFight;
 import lauchfight.Player;
 import lauchfight.Screen;
 
-public class MinigunProjectile extends Attack {
+public class Cardwurf extends Attack {
 
-	private float speed = 1f;
-	private double angle;
-	int dir = 0;
+	private float speed = 0.6f;
+
+	private double vX;
+	private double vY;
 
 	public void addX(double a) {
 		this.x = (x + a * speed);
@@ -23,24 +22,18 @@ public class MinigunProjectile extends Attack {
 		this.y = (y + a * speed);
 	}
 
-	public MinigunProjectile(Player pSend) {
+	public Cardwurf(Player pSend) {
 
-		speed += ThreadLocalRandom.current().nextFloat() * 0.02f;
-		width = 6;
-		height = 6;
-
+		// the aim position
 		double xA = Screen.MouseX - pSend.getX() - 30;
 		double yA = Screen.MouseY - pSend.getY() - 60;
 
-		angle = Math.atan(yA / xA);
-		if (xA < 0)
-			angle += Math.PI;
-		angle += ThreadLocalRandom.current().nextGaussian() * 0.05;
+		this.x = pSend.getX() + 25;
+		this.y = pSend.getY() + 25;
 
-		// the aim position
-
-		this.x = pSend.getX() + 25 - width / 2;
-		this.y = pSend.getY() + 25 - height / 2;
+		double k = Math.sqrt((speed * speed) / (xA * xA + yA * yA));
+		vX = xA * k;
+		vY = yA * k;
 
 		// save the player that created the attack
 		this.p = pSend;
@@ -48,12 +41,13 @@ public class MinigunProjectile extends Attack {
 
 	@Override
 	public void phys() {
-		addX(speed * Math.cos(angle));
-		addY(speed * Math.sin(angle));
+		addX(vX);
+		addY(vY);
 
 		if (this.x >= LauchFight.screenX || this.y >= LauchFight.screenY || this.x <= 0 || this.y <= 0) {
 			this.setAlive(false);
 		}
+
 	}
 
 	@Override
@@ -61,8 +55,8 @@ public class MinigunProjectile extends Attack {
 
 		// if the attack is used do stuff
 
-		g.setColor(Color.lightGray);
-		g.fillRect((int) x, (int) y, width, height);
+		g.setColor(Color.BLUE);
+		g.fillRect((int) x, (int) y, 20, 30);
 
 		return g;
 	}
@@ -72,7 +66,7 @@ public class MinigunProjectile extends Attack {
 		// do stuff with the player if it gets hit!
 
 		if (playerHit != this.p) {
-			playerHit.addLife(-3);
+			playerHit.addLife(-30);
 			this.setAlive(false);
 		}
 

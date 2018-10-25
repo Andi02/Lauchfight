@@ -1,13 +1,13 @@
-package lauchfight.attacks;
+package lauchfight.attacks.mage;
 
 import lauchfight.Attack;
 import lauchfight.AttackFactory;
 import lauchfight.Player;
 
-public class SpeeedFactory extends AttackFactory {
+public class FireballFactory extends AttackFactory {
 
-	private long COOLDOWN = 7500;
-	private long cooldownCounter = 7500;
+	private long COOLDOWN = 2000;
+	private long cooldownCounter = 2000;
 
 	public void addCooldown(long a) {
 		if (cooldownCounter > 0)
@@ -25,12 +25,12 @@ public class SpeeedFactory extends AttackFactory {
 		cooldownCounter = COOLDOWN;
 	}
 
-	public SpeeedFactory() {
+	public FireballFactory() {
 	}
 
 	@Override
 	public Attack create(Player pSend) {
-		return new Speeed(pSend);
+		return new FrozenBolt(pSend);
 	}
 
 }
