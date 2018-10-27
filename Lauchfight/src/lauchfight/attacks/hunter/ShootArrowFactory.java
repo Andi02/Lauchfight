@@ -7,7 +7,7 @@ import lauchfight.attacks.Test;
 
 public class ShootArrowFactory extends AttackFactory{
       
-    private long COOLDOWN = 50;
+    private long COOLDOWN = 10;
 
     @Override
     public Attack createNew(Player p, int mouseX, int mouseY) {
