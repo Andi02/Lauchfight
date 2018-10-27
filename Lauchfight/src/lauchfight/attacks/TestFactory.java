@@ -4,33 +4,24 @@ import lauchfight.Attack;
 import lauchfight.AttackFactory;
 import lauchfight.Player;
 
-
 public class TestFactory extends AttackFactory{
     
-    private long COOLDOWN = 1;
-    private long cooldownCounter = 1;
+    private long COOLDOWN = 1000;
 
-    public void addCooldown(long a){
-        if (cooldownCounter > 0) cooldownCounter += a;
-    }
-   
-    public boolean cooldownZero(){
-        if (cooldownCounter == 0) return true;
-        return false;    
+    @Override
+    public Attack createNew(Player p, int mouseX, int mouseY) {
+        //restet the cooldown
+        this.setCoolDown(COOLDOWN);
+        //return a new attack
+        return new Test(p,mouseX,mouseY);
     }
     
     @Override
-    public void resetCooldown() {
-        cooldownCounter = COOLDOWN;
+    public void updateCoolDown() {
+        if(this.getCoolDown() > 0) this.setCoolDown(this.getCoolDown()-1);
     }
     
     public TestFactory(){}
-
-
-    @Override
-    public Attack create(Player pSend) {
-        return new Test(pSend);
-    }
 
     
     

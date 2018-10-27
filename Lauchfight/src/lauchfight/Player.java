@@ -1,112 +1,82 @@
 package lauchfight;
 
-import java.awt.Graphics;
+import java.util.ArrayList;
 
-public class Player {
 
-    private double x;
+public class Player extends Object{
+    
+    
+    //the health of the Player
+    private int health;
+    
+    //the speed of the Player
+    private double speed;
+    
 
-    private double y;
 
-    private AttackFactory[] factorys;
+    //Attacks
+    ArrayList<AttackFactory> attackFactorys = new ArrayList();
+    
+    
+    //Effects
+    
+    
+    //setters/getters/adders
 
-    private long life;
+    public int getHealth() {
+        return health;
+    }
 
-    public float speed = 0.1f;
-
-    public float getSpeed() {
+    public void setHealth(int health) {
+        this.health = health;
+    }
+    
+    public void addHealth(int val) {
+        setHealth(getHealth()+val);
+    }
+    
+    @Override
+	public double getSpeed() {
         return speed;
     }
 
-    private int id;
-
-    // constructor
-    public Player(AttackFactory[] factorys, double x, double y, long life, float speed, int id) {
-
-        this.factorys = factorys;
-
-        this.x = x;
-        this.y = y;
-
-        this.life = life;
-
+    public void setSpeed(int speed) {
         this.speed = speed;
-
-        this.id = id;
-
+    }
+    public void addAttackFactory(AttackFactory a){
+        attackFactorys.add(a);
+    }
+    
+    public Player(double speed){
+        this.speed = speed;
+    }
+    
+    public AttackFactory getFactory(int in){
+        return attackFactorys.get(in);
+    }
+    
+    
+    
+    
+    
+    //create a new Attack
+    public Attack useAttack(int index,int mouseX, int mouseY){
+        return attackFactorys.get(index).createNew(this,mouseX,mouseY);
     }
 
-    public AttackFactory[] getFactorys() {
-        return factorys;
+    @Override
+    public void update() {
+        
+        //update the coolDown of every Attack
+        attackFactorys.forEach((a) -> {
+            a.updateCoolDown();
+        });
+        
+        
     }
 
-    public void setFactorys(AttackFactory[] factorys) {
-        this.factorys = factorys;
-    }
-
-    public int getId() {
-        return id;
-    }
-
-    public double getX() {
-        return x;
-    }
-
-    public void setX(double x) {
-        this.x = x;
-    }
-
-    public double getY() {
-        return y;
-    }
-
-    public void setY(double y) {
-        this.y = y;
-    }
-
-    public void addY(double a) {
-        if (this.y + a * speed > 0 && this.y + a * speed < LauchFight.screenY - 80)
-            this.y = y + speed * a;
-    }
-
-    public void addX(double a) {
-        if (this.x + a * speed > 0 && this.x + a * speed < LauchFight.screenX - 50)
-            this.x = x + speed * a;
-    }
-
-    public void setSpeed(float f) {
-        this.speed = f;
-    }
-
-    public long getLife() {
-        return life;
-    }
-
-    public void setLife(long life) {
-        this.life = life;
-    }
-
-    public void addLife(long life) {
-        this.life += life;
-    }
-
-    public Attack getAttack(int a) {
-        return factorys[a].create(this);
-    }
-
-    public Graphics draw(Graphics g) {
-        // draw the player
-
-
-//     if(life <= 0) {
-//            this.x=100;
-//            this.y=100;
-//            setSpeed(0.0f);
-//        }
-
-        g.fillRect((int) x, (int) y, 50, 50);
-
-        return g;
-    }
-
+    
+    
+    
+    
 }

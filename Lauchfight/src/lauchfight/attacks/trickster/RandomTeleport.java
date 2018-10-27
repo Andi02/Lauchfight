@@ -4,10 +4,10 @@ import java.awt.Color;
 import java.awt.Graphics;
 import java.util.concurrent.ThreadLocalRandom;
 
+import client.Client;
 import lauchfight.Attack;
-import lauchfight.LauchFight;
+import lauchfight.LauchFightOnline;
 import lauchfight.Player;
-import lauchfight.Screen;
 
 public class RandomTeleport extends Attack {
 	private int count = 0;
@@ -15,18 +15,10 @@ public class RandomTeleport extends Attack {
 	private int xT, yT;
 	private CardwurfFactory Factory = new CardwurfFactory();
 
-	public RandomTeleport(Player pSend) {
+	public RandomTeleport(Player pSend,int mouseX,int mouseY) {
 		// save the player that created the attack
-		this.p = pSend;
-		teleport = true;
-
-	}
-
-	@Override
-	public void phys() {
-		count++;
-
-		if (teleport) {
+		this.setP(pSend);
+		
 			int randX, randY;
 			do {
 				randX = ThreadLocalRandom.current().nextInt(-500, 500);
@@ -35,45 +27,41 @@ public class RandomTeleport extends Attack {
 				randY = ThreadLocalRandom.current().nextInt(-500, 500);
 			} while (Math.abs(randY) <= 70);
 
-			xT = (int) (this.p.getX() + randX);
-			yT = (int) (this.p.getY() + randY);
+			xT = (int) (this.getP().getXPos() + randX);
+			yT = (int) (this.getP().getYPos() + randY);
 
 			if (xT < 1)
 				xT = 1;
-			if (xT > LauchFight.screenX - 50)
-				xT = LauchFight.screenX - 50;
+			if (xT > Client.screenX - 50)
+				xT = Client.screenX - 50;
 
-			yT = Screen.MouseY - 50;
+			yT = mouseY - 50;
 			if (yT < 1)
 				yT = 1;
-			if (yT > LauchFight.screenY - 80)
-				yT = LauchFight.screenY - 80;
-			teleport = false;
-		}
+			if (yT > Client.screenY - 80)
+				yT = Client.screenY - 80;
+
+	}
+
+	@Override
+	public void update() {
+		count++;
 
 		if (count == 500) {
 			count = 0;
-			this.p.setX(xT);
-			this.p.setY(yT);
+			this.getP().setXPos(xT);
+			this.getP().setYPos(yT);
 
 			this.setAlive(false);
-			this.onCollision(this.p);
+			this.onCollision(this.getP());
 		}
 
 	}
 
-	@Override
-	public Graphics draw(Graphics g) {
-
-		g.setColor(Color.magenta);
-		g.fillRect(xT, yT, 50, 50);
-
-		return g;
-	}
 
 	@Override
 	public void onCollision(Player playerHit) {
-		LauchFight.aR.setNewAttacks(Factory.create(playerHit));
+		LauchFightOnline.aR.setNewAttacks(Factory.create(playerHit));
 	}
 
 }

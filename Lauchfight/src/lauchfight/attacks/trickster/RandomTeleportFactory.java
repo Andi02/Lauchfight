@@ -1,8 +1,4 @@
-package lauchfight.attacks.trickster;
-
-import lauchfight.Attack;
-import lauchfight.AttackFactory;
-import lauchfight.Player;
+package LauchFightOnline.attacks.trickster;
 
 public class RandomTeleportFactory extends AttackFactory {
 

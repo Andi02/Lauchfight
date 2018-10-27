@@ -4,45 +4,28 @@ import java.awt.Color;
 import java.awt.Graphics;
 
 import lauchfight.Attack;
-import lauchfight.LauchFight;
 import lauchfight.Player;
-import lauchfight.Screen;
 
 public class FireballExplosion extends Attack {
 
- private double count = 0;
+	private double count = 0;
 
-	public FireballExplosion(Player pSend) {
+	public FireballExplosion(Player pSend, int mouseX, int mouseY) {
 
-		width = 100;
-		height = 100;
+		setHitBoxHeight(100);
+		setHitBoxWidth(100);
 
-		this.p = pSend;
+		this.setP(pSend);
 	}
 
 	@Override
-	public void phys() {
-
-
-	}
-
-	@Override
-	public Graphics draw(Graphics g) {
-
-		g.setColor(Color.magenta);
-		g.fillOval((int) x, (int) y, (int) (30+count), (int) (30+count));
-
-		return g;
+	public void update() {
 	}
 
 	@Override
 	public void onCollision(Player playerHit) {
 
-			
-			this.setAlive(false);
-			
-
-
+		this.setAlive(false);
 	}
 
 }

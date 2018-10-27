@@ -2,45 +2,40 @@ package lauchfight.attacks.mage;
 
 import java.awt.Color;
 import java.awt.Graphics;
+
+import client.Client;
 import lauchfight.Attack;
-import lauchfight.LauchFight;
 import lauchfight.Player;
-import lauchfight.Screen;
 
 public class Teleport extends Attack {
 	private int count = 0;
 	private boolean teleport;
 	private int xT, yT;
 
-	public Teleport(Player pSend) {
+	public Teleport(Player pSend,int mouseX,int mouseY) {
 		// save the player that created the attack
-		this.p = pSend;
-		teleport = true;
+		this.setP(pSend);
+		xT = mouseX - 25;
+		if (xT < 1)
+			xT = 1;
+		if (xT > Client.screenX - 50)
+			xT = Client.screenX - 50;
+
+		yT = mouseY - 50;
+		if (yT < 1)
+			yT = 1;
+		if (yT > Client.screenY - 80)
+			yT = Client.screenY - 80;
 	}
 
 	@Override
-	public void phys() {
+	public void update() {
 		count++;
-
-		if (teleport) {
-			xT = Screen.MouseX - 25;
-			if (xT < 1)
-				xT = 1;
-			if (xT > LauchFight.screenX - 50)
-				xT = LauchFight.screenX - 50;
-
-			yT = Screen.MouseY - 50;
-			if (yT < 1)
-				yT = 1;
-			if (yT > LauchFight.screenY - 80)
-				yT = LauchFight.screenY - 80;
-			teleport = false;
-		}
 
 		if (count == 1100) {
 			count = 0;
-			this.p.setX(xT);
-			this.p.setY(yT);
+			this.getP().setXPos(xT);
+			this.getP().setYPos(yT);
 
 			this.setAlive(false);
 		}
@@ -48,16 +43,10 @@ public class Teleport extends Attack {
 	}
 
 	@Override
-	public Graphics draw(Graphics g) {
-
-		g.setColor(Color.magenta);
-		g.fillRect(xT, yT, 50, 50);
-
-		return g;
+	public void onCollision(Player col) {
+		// TODO Auto-generated method stub
+		
 	}
 
-	@Override
-	public void onCollision(Player playerHit) {
-	}
 
 }

@@ -3,8 +3,9 @@ package lauchfight.attacks.lauch;
 import java.awt.Color;
 import java.awt.Graphics;
 import java.util.concurrent.ThreadLocalRandom;
+
+import client.Client;
 import lauchfight.Attack;
-import lauchfight.LauchFight;
 import lauchfight.Player;
 
 public class LauchwurfSpawn extends Attack {
@@ -20,11 +21,11 @@ public class LauchwurfSpawn extends Attack {
 	private int lauchfeldY;
 
 	public void addX(double a) {
-		this.x += a * speed;
+		this.xPos += a * speed;
 	}
 
 	public void addY(double a) {
-		this.y += a * speed;
+		this.yPos += a * speed;
 	}
 
 	public LauchwurfSpawn(Player pSend, int count, int lauchfeldX, int lauchfeldY) {
@@ -34,49 +35,49 @@ public class LauchwurfSpawn extends Attack {
 		yA = ThreadLocalRandom.current().nextInt(-20, 20);
 
 		// save the player that created the attack
-		this.p = pSend;
+		this.setP(pSend);
 		this.count = count;
 		this.lauchfeldX = lauchfeldX;
 		this.lauchfeldY = lauchfeldY;
 	}
 	@Override
-	public void phys() {
+	public void update() {
 		if (count > -1 && count < 10)
 			count -= 0.008;
 		if (count <= 0) {
-			this.x = this.lauchfeldX + 20;
-			this.y = this.lauchfeldY + 20;
+			this.xPos = this.lauchfeldX + 20;
+			this.yPos = this.lauchfeldY + 20;
 
 			if (xA >= 0 && xA > Math.abs(yA)) {
 				vX = 1;
-				width = 50;
-				height = 5;
-				this.x += 25;
-				this.y -= 2;
+				setHitBoxWidth(50);
+				setHitBoxHeight(5);
+				this.xPos += 25;
+				this.yPos -= 2;
 			} else if (xA <= 0 && Math.abs(xA) > Math.abs(yA)) {
 				vX = -1;
-				width = 50;
-				height = 5;
-				this.x -= 75;
-				this.y -= 2;
+				setHitBoxWidth(50);
+				setHitBoxHeight(5);
+				this.xPos -= 75;
+				this.yPos -= 2;
 			} else if (yA > 0) {
 				vY = 1;
-				width = 5;
-				height = 50;
-				this.y += 25;
-				this.x -= 2;
+				setHitBoxWidth(5);
+				setHitBoxHeight(50);
+				this.yPos += 25;
+				this.xPos -= 2;
 			} else {
 				vY = -1;
-				width = 5;
-				height = 50;
-				this.y -= 75;
-				this.x -= 2;
+				setHitBoxWidth(5);
+				setHitBoxHeight(50);
+				this.yPos -= 75;
+				this.xPos -= 2;
 			}
 			count = 20;
 			created = true;
 		}
 		if (created) {
-			if (this.x >= LauchFight.screenX || this.y >= LauchFight.screenY || this.x <= 0 || this.y <= 0) {
+			if (this.xPos >= Client.screenX || this.yPos >= Client.screenY || this.xPos <= 0 || this.yPos <= 0) {
 				this.setAlive(false);
 			}
 
@@ -84,21 +85,13 @@ public class LauchwurfSpawn extends Attack {
 			addY(vY);
 		}
 	}
-	@Override
-	public Graphics draw(Graphics g) {
-		if (created) {
-			g.setColor(Color.green);
-			g.fillRect((int) x, (int) y, width, height);
-		}
-		return g;
-	}
 
 	@Override
 	public void onCollision(Player playerHit) {
 		// do stuff with the player if it gets hit!
 		if (created)
-			if (!(playerHit == this.p)) {
-				playerHit.addLife(-30);
+			if (!(playerHit == this.getP())) {
+				playerHit.addHealth(-30);
 				this.setAlive(false);
 			}
 

@@ -3,10 +3,9 @@ package lauchfight.attacks.mage;
 import java.awt.Color;
 import java.awt.Graphics;
 
+import client.Client;
 import lauchfight.Attack;
-import lauchfight.LauchFight;
 import lauchfight.Player;
-import lauchfight.Screen;
 
 public class FrozenBolt extends Attack {
 
@@ -16,56 +15,49 @@ public class FrozenBolt extends Attack {
 	private double vY;
 
 	public void addX(double a) {
-		this.x = (x + a * speed);
+		this.setXPos((getXPos() + a * speed));
 	}
 
 	public void addY(double a) {
-		this.y = (y + a * speed);
+		this.setYPos((getXPos() + a * speed));
 	}
 
-	public FrozenBolt(Player pSend) {
+	public FrozenBolt(Player pSend, int mouseX, int mouseY) {
 
-		width = 30;
-		height = 30;
+		setHitBoxHeight(30);
+		setHitBoxWidth(30);
 
-		double xA = Screen.MouseX - pSend.getX() - 30;
-		double yA = Screen.MouseY - pSend.getY() - 60;
 
-		this.x = pSend.getX() + 10;
-		this.y = pSend.getY() + 10;
+		double xA = mouseX - pSend.getXPos() - 30;
+		double yA = mouseY - pSend.getYPos() - 60;
+
+		this.setXPos(pSend.getXPos() + 10);
+		this.setXPos(pSend.getYPos() + 10);
 
 		double k = Math.sqrt((speed * speed) / (xA * xA + yA * yA));
 		vX = xA * k;
 		vY = yA * k;
 
-		this.p = pSend;
+		this.setP(pSend);
 	}
 
 	@Override
-	public void phys() {
+	public void update() {
 		addX(vX);
 		addY(vY);
 
-		if (this.x >= LauchFight.screenX || this.y >= LauchFight.screenY || this.x <= 0 || this.y <= 0) {
+		if (this.getXPos() >= Client.screenX || this.getYPos() >= Client.screenY || this.getXPos() <= 0 || this.getYPos() <= 0) {
 			this.setAlive(false);
 		}
 
 	}
 
-	@Override
-	public Graphics draw(Graphics g) {
-
-		g.setColor(Color.magenta);
-		g.fillOval((int) x, (int) y, width, height);
-
-		return g;
-	}
 
 	@Override
 	public void onCollision(Player playerHit) {
 
-		if (playerHit != this.p) {
-			playerHit.addLife(-40);
+		if (playerHit != this.getP()) {
+			playerHit.addHealth(-40);
 			this.setAlive(false);
 		}
 

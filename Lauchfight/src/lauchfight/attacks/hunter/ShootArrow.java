@@ -1,10 +1,10 @@
 package lauchfight.attacks.hunter;
 
 import java.awt.Graphics;
+
+import client.Client;
 import lauchfight.Attack;
-import lauchfight.LauchFight;
 import lauchfight.Player;
-import lauchfight.Screen;
 
 public class ShootArrow extends Attack {
 
@@ -14,60 +14,51 @@ public class ShootArrow extends Attack {
 	private double vY;
 
 	public void addX(double a) {
-		this.x = (x + a * speed);
+		this.setXPos(getXPos() + a * speed);
 	}
 
 	public void addY(double a) {
-		this.y = (y + a * speed);
+		this.setYPos(getYPos() + a * speed);
 	}
 
-	public ShootArrow(Player pSend) {
+	public ShootArrow(Player pSend,int mouseX,int mouseY) {
 
 		// the aim position
-		double xA = Screen.MouseX - pSend.getX() - 30;
-		double yA = Screen.MouseY - pSend.getY() - 60;
+		double xA = mouseX - pSend.getXPos();
+		double yA = mouseY - pSend.getYPos();
 
-		this.x = pSend.getX() + 25;
-		this.y = pSend.getY() + 25;
+		this.setXPos(pSend.getXPos()+25);
+		this.setYPos(pSend.getYPos()+25);
 
 		double k = Math.sqrt((speed * speed) / (xA * xA + yA * yA));
 		vX = xA * k;
 		vY = yA * k;
 
 		// save the player that created the attack
-		this.p = pSend;
+		this.setP(pSend);
 	}
 
 	@Override
-	public void phys() {
+	public void update() {
 		addX(vX);
 		addY(vY);
 
-		if (this.x >= LauchFight.screenX || this.y >= LauchFight.screenY || this.x <= 0 || this.y <= 0) {
+		if (this.getXPos() >= Client.screenX || this.getYPos() >= Client.screenY || this.getXPos() <= 0 || this.getYPos() <= 0) {
 			this.setAlive(false);
 		}
 
-	}
-
-	@Override
-	public Graphics draw(Graphics g) {
-
-		// if the attack is used do stuff
-
-		g.fillRect((int) x, (int) y, width, height);
-
-		return g;
 	}
 
 	@Override
 	public void onCollision(Player playerHit) {
 		// do stuff with the player if it gets hit!
 
-		if (playerHit != this.p) {
-			playerHit.addLife(-10);
+		if (playerHit != this.getP()) {
+			playerHit.addHealth(-10);
 			this.setAlive(false);
 		}
 
 	}
+
 
 }

@@ -1,13 +1,8 @@
-package lauchfight.attacks.soldier;
+package LauchFightOnline.attacks.soldier;
 
 import java.awt.Color;
 import java.awt.Graphics;
 import java.util.concurrent.ThreadLocalRandom;
-
-import lauchfight.Attack;
-import lauchfight.LauchFight;
-import lauchfight.Player;
-import lauchfight.Screen;
 
 public class MinigunProjectile extends Attack {
 
@@ -43,15 +38,15 @@ public class MinigunProjectile extends Attack {
 		this.y = pSend.getY() + 25 - height / 2;
 
 		// save the player that created the attack
-		this.p = pSend;
+		this.getP() = pSend;
 	}
 
 	@Override
-	public void phys() {
+	public void update() {
 		addX(speed * Math.cos(angle));
 		addY(speed * Math.sin(angle));
 
-		if (this.x >= LauchFight.screenX || this.y >= LauchFight.screenY || this.x <= 0 || this.y <= 0) {
+		if (this.x >= LauchFightOnline.screenX || this.y >= LauchFightOnline.screenY || this.x <= 0 || this.y <= 0) {
 			this.setAlive(false);
 		}
 	}
@@ -71,8 +66,8 @@ public class MinigunProjectile extends Attack {
 	public void onCollision(Player playerHit) {
 		// do stuff with the player if it gets hit!
 
-		if (playerHit != this.p) {
-			playerHit.addLife(-3);
+		if (playerHit != this.getP()) {
+			playerHit.addHealth(-3);
 			this.setAlive(false);
 		}
 

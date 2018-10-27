@@ -3,10 +3,10 @@ package lauchfight.attacks.mage;
 import java.awt.Color;
 import java.awt.Graphics;
 
+import client.Client;
 import lauchfight.Attack;
-import lauchfight.LauchFight;
+import lauchfight.LauchFightOnline;
 import lauchfight.Player;
-import lauchfight.Screen;
 
 public class Fireball extends Attack {
 
@@ -16,55 +16,47 @@ public class Fireball extends Attack {
 	private double vY;
 
 	public void addX(double a) {
-		this.x = (x + a * speed);
+		this.setXPos((getXPos() + a * speed));
 	}
 
 	public void addY(double a) {
-		this.y = (y + a * speed);
+		this.setYPos((getXPos() + a * speed));
 	}
 
-	public Fireball(Player pSend) {
+	public Fireball(Player pSend,int mouseX,int mouseY) {
 
-		width = 30;
-		height = 30;
+		setHitBoxWidth(30);
+		setHitBoxHeight(30);
 
-		double xA = Screen.MouseX - pSend.getX() - 30;
-		double yA = Screen.MouseY - pSend.getY() - 60;
+		double xA = mouseX - pSend.getXPos() - 30;
+		double yA = mouseY - pSend.getYPos() - 60;
 
-		this.x = pSend.getX() + 10;
-		this.y = pSend.getY() + 10;
+		setXPos(pSend.getXPos() + 10);
+		setYPos(pSend.getYPos() + 10);
 
 		double k = Math.sqrt((speed * speed) / (xA * xA + yA * yA));
 		vX = xA * k;
 		vY = yA * k;
 
-		this.p = pSend;
+		setP(pSend);
 	}
 
 	@Override
-	public void phys() {
+	public void update() {
 		addX(vX);
 		addY(vY);
 
-		if (this.x >= LauchFight.screenX || this.y >= LauchFight.screenY || this.x <= 0 || this.y <= 0) {
-			onCollision(this.p);
+		if (this.getXPos() >= Client.screenX || this.getYPos() >= Client.screenY || this.getXPos() <= 0 || this.getYPos() <= 0) {
+			this.setAlive(false);
 		}
 
 	}
 
-	@Override
-	public Graphics draw(Graphics g) {
-
-		g.setColor(Color.magenta);
-		g.fillOval((int) x, (int) y, width, height);
-
-		return g;
-	}
 
 	@Override
 	public void onCollision(Player playerHit) {
 
-		LauchFight.aR.setNewAttacks(Factory.create(this.p));
+		LauchFightOnline.aR.setNewAttacks(Factory.create(this.getP()));
 		this.setAlive(false);
 
 	}

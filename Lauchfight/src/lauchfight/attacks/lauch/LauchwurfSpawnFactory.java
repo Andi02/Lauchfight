@@ -7,7 +7,6 @@ import lauchfight.Player;
 public class LauchwurfSpawnFactory extends AttackFactory {
 
 	private long COOLDOWN = 1500;
-	private long cooldownCounter = 1500;
 	private int count;
 	private int lauchfeldX;
 	private int lauchfeldY;
@@ -20,32 +19,25 @@ public class LauchwurfSpawnFactory extends AttackFactory {
 		this.lauchfeldY = lauchfeldY;
 	}
 
-	public void addCooldown(long a) {
-		if (cooldownCounter > 0)
-			cooldownCounter += a;
-	}
-
-	public boolean cooldownZero() {
-		if (cooldownCounter == 0)
-			return true;
-		return false;
-	}
-
 	public void setCount(int count) {
 		this.count = count;
-	}
-
-	@Override
-	public void resetCooldown() {
-		cooldownCounter = COOLDOWN;
 	}
 
 	public LauchwurfSpawnFactory() {
 	}
 
 	@Override
-	public Attack create(Player pSend) {
-		return new LauchwurfSpawn(pSend, count, lauchfeldX, lauchfeldY);
+	public Attack createNew(Player p, int mouseX, int mouseY) {
+		// restet the cooldown
+		this.setCoolDown(COOLDOWN);
+		// return a new attack
+		return new Lauchwurf(p, mouseX, mouseY);
+	}
+
+	@Override
+	public void updateCoolDown() {
+		if (this.getCoolDown() > 0)
+			this.setCoolDown(this.getCoolDown() - 1);
 	}
 
 }

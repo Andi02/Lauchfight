@@ -1,76 +1,22 @@
 package lauchfight;
 
-import java.awt.Graphics;
 
-public abstract class Attack{
 
-	public int width = 10;
-	public int height = 10;
-	public double x = 0;
-	public double y = 0;
-	public boolean alive = true;
-	public Player p;
-	public int playerId;
+public abstract class Attack extends Object {
 
-	public void setPlayer(Player[] players) {
-		p = players[playerId];
-	}
+	//setters and getters
+    private Player p;
 
-	public boolean isAlive() {
-		return alive;
-	}
+    public Player getP() {
+        return p;
+    }
 
-	public void setAlive(boolean alive) {
-		this.alive = alive;
-	}
+    public void setP(Player p) {
+        this.p = p;
+    }
+    
+    //if the attack collieds with a Player
+    public abstract void onCollision(Player col);
 
-	public int getWidth() {
-		return width;
-	}
-
-	public void setWidth(int width) {
-		this.width = width;
-	}
-
-	public int getHeight() {
-		return height;
-	}
-
-	public void setHeight(int height) {
-		this.height = height;
-	}
-
-	public double getX() {
-		return x;
-	}
-
-	public void setX(double x) {
-		this.x = x;
-		this.x = x;
-	}
-
-	public double getY() {
-		return y;
-	}
-
-	public void setY(double y) {
-		this.y = y;
-	}
-
-	// checks if the input touches the attack
-	public boolean touch(double x, double y, int w, int h) {
-
-		if (this.x + this.width > x && this.x < x + w) {
-			if (this.y + this.height > y && this.y < y + w)
-				return true;
-		}
-
-		return false;
-	}
-	public abstract void phys();
-	
-	public abstract Graphics draw(Graphics g);
-
-	public abstract void onCollision(Player playerHit);
-
+    
 }

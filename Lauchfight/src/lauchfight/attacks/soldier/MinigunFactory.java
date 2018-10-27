@@ -1,8 +1,4 @@
-package lauchfight.attacks.soldier;
-
-import lauchfight.Attack;
-import lauchfight.AttackFactory;
-import lauchfight.Player;
+package LauchFightOnline.attacks.soldier;
 
 
 public class MinigunFactory extends AttackFactory{
