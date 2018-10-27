@@ -26,7 +26,9 @@ public class SendThread extends Thread{
 			
 			Client.obs = buff;
 			
-			
+			try {
+				Thread.sleep(1);
+			}catch(Exception e) {}
 		}
 		
 		
