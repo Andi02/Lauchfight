@@ -41,8 +41,8 @@ public abstract class Object {
         //set deafult
         xPos = 0;
         yPos = 0;
-        this.r = 255;
-        this.g = 255;
+        this.r = 0;
+        this.g = 0;
         this.b = 255;
         shape = "rect";
         alive = true;

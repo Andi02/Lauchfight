@@ -20,7 +20,8 @@ public class FixObject extends Object{
     
     @Override
 	public void draw(Graphics g){
-        g.setColor(Color.getHSBColor(getR(), getG(), getB()));
+    	float[] col = Color.RGBtoHSB(getR(),  getG(), getB(), null);
+        g.setColor(Color.getHSBColor(col[0], col[1], col[2]));
         g.fillRect((int)getXPos(),(int) getYPos(), getHitBoxWidth(), getHitBoxHeight());
     }
     
