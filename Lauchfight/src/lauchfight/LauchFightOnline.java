@@ -2,6 +2,7 @@ package lauchfight;
 
 import java.util.ArrayList;
 import lauchfight.attacks.hunter.ShootArrowFactory;
+import lauchfight.attacks.lauch.LauchwurfFactory;
 import lauchfight.attacks.mage.TeleportFactory;
 import lauchfight.attacks.soldier.PistolFactory;
 
@@ -26,7 +27,7 @@ public class LauchFightOnline{
         p1.addAttackFactory(new ShootArrowFactory());
         p1.addAttackFactory(new ShootArrowFactory());
         p2.addAttackFactory(new TeleportFactory());
-        p2.addAttackFactory(new ShootArrowFactory());
+        p2.addAttackFactory(new LauchwurfFactory());
         //add the players to the world array
         world.add(p1);
         world.add(p2);

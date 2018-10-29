@@ -1,9 +1,12 @@
-package LauchFightOnline.attacks.soldier;
+package lauchfight.attacks.soldier;
 
 import java.awt.Color;
 import java.awt.Graphics;
 import java.awt.MouseInfo;
 import java.util.List;
+
+import lauchfight.Attack;
+import lauchfight.Player;
 
 public class Minigun extends Attack {
 
@@ -14,8 +17,8 @@ public class Minigun extends Attack {
 	public Minigun(Player pSend) {
 
 		// save the player that created the attack
-		this.getP() = pSend;
-		pSpeed = p.getSpeed();
+		this.setP(pSend);
+		pSpeed = pSend.getSpeed();
 		this.getP().setSpeed(0f);
 	}
 
