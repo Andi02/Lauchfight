@@ -14,8 +14,8 @@ public class LauchFightOnline{
     public void setUp() {
 
         //create all the Players
-        Player p1 = new Player(0.2);
-        Player p2 = new Player(0.2);
+        Player p1 = new Player(0.2,20);
+        Player p2 = new Player(0.2,20);
         
         p1.setHitBoxHeight(50);
         p1.setHitBoxWidth(50);

@@ -43,9 +43,10 @@ public class Player extends Object{
 
 
     
-    public Player(double speed){
+    public Player(double speed,int health){
         this.setSpeed(speed);
         setVisible(true);
+        setHealth(health);
     }
     
     
