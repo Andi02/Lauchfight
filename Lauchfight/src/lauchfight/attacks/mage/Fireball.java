@@ -20,7 +20,7 @@ public class Fireball extends Attack {
 	}
 
 	public void addY(double a) {
-		this.setYPos((getXPos() + a * speed));
+		this.setYPos((getYPos() + a * speed));
 	}
 
 	public Fireball(Player pSend,int mouseX,int mouseY) {

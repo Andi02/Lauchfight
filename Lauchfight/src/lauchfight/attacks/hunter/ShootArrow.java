@@ -1,10 +1,9 @@
 package lauchfight.attacks.hunter;
-
+import lauchfight.*;
 import java.awt.Graphics;
 
 import client.Client;
-import lauchfight.Attack;
-import lauchfight.Player;
+import client.Screen;
 
 public class ShootArrow extends Attack {
 
@@ -14,28 +13,32 @@ public class ShootArrow extends Attack {
 	private double vY;
 
 	public void addX(double a) {
-		this.setXPos(getXPos() + a * speed);
+		this.setXPos((getXPos() + a * speed));
 	}
 
 	public void addY(double a) {
-		this.setYPos(getYPos() + a * speed);
+		this.setYPos((getYPos() + a * speed));
 	}
 
 	public ShootArrow(Player pSend,int mouseX,int mouseY) {
 
-		// the aim position
-		double xA = mouseX - pSend.getXPos();
-		double yA = mouseY - pSend.getYPos();
+		//set the speed
+        this.setSpeed(0.5);
 
-		this.setXPos(pSend.getXPos()+25);
-		this.setYPos(pSend.getYPos()+25);
+        //set the starting pos
+        this.setXPos(pSend.getXPos());
+        this.setYPos(pSend.getYPos());
 
-		double k = Math.sqrt((speed * speed) / (xA * xA + yA * yA));
-		vX = xA * k;
-		vY = yA * k;
+        // the aim position
+        double xA = mouseX - pSend.getXPos();
+        double yA = mouseY - pSend.getYPos();
 
-		// save the player that created the attack
-		this.setP(pSend);
+        double k = Math.sqrt((this.getSpeed() * this.getSpeed()) / (xA * xA + yA * yA));
+        vX = xA * k;
+        vY = yA * k;
+
+        // save the player that created the attack
+        this.setP(pSend);
 	}
 
 	@Override
@@ -59,6 +62,5 @@ public class ShootArrow extends Attack {
 		}
 
 	}
-
 
 }

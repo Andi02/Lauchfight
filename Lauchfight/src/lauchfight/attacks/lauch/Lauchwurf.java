@@ -19,7 +19,7 @@ public class Lauchwurf extends Attack {
 	}
 
 	public void addY(double a) {
-		this.setYPos((getXPos() + a * speed));
+		this.setYPos((getYPos() + a * speed));
 	}
 
 	public Lauchwurf(Player pSend,int mouseX,int mouseY) {
@@ -63,6 +63,7 @@ public class Lauchwurf extends Attack {
 
 	@Override
 	public void update() {
+		System.out.println(vX + "  " + vY);
 		addX(vX);
 		addY(vY);
 
