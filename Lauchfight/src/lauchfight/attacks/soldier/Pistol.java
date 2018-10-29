@@ -18,14 +18,15 @@ public class Pistol extends Attack {
 	}
 
 	public void addY(double a) {
-		this.setYPos((getXPos() + a * speed));
+		this.setYPos((getYPos() + a * speed));
 	}
 
 	public Pistol(Player pSend,int mouseX,int mouseY) {
 
+		System.out.println(pSend.getXPos() + " " + pSend.getYPos());
 		// the aim position
-		double xA = mouseX - pSend.getXPos() - 30;
-		double yA = mouseY - pSend.getYPos() - 60;
+		double xA = mouseX - pSend.getXPos();
+		double yA = mouseY - pSend.getYPos();
 
 		this.setXPos(pSend.getXPos() + 25);
 		this.setYPos(pSend.getYPos() + 25);

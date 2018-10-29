@@ -13,6 +13,14 @@ public class Teleport extends Attack {
 	private int xT, yT;
 
 	public Teleport(Player pSend,int mouseX,int mouseY) {
+		
+		//set the attack y and x
+		this.setXPos(mouseX-25);
+		this.setYPos(mouseY-25);
+		
+		//set the height, width and color of the attack
+		
+		
 		// save the player that created the attack
 		this.setP(pSend);
 		xT = mouseX - 25;
@@ -34,6 +42,7 @@ public class Teleport extends Attack {
 
 		if (count == 1100) {
 			count = 0;
+			System.out.println("still here");
 			this.getP().setXPos(xT);
 			this.getP().setYPos(yT);
 
@@ -44,8 +53,6 @@ public class Teleport extends Attack {
 
 	@Override
 	public void onCollision(Player col) {
-		// TODO Auto-generated method stub
-		
 	}
 
 

@@ -21,6 +21,10 @@ public abstract class Object {
     private boolean alive;
 
     private double speed;
+    
+    
+    //object still visible
+    private boolean visible;
 
     public Object(int x, int y, int w, int h, int r, int g, int b, String s) {
         xPos = x;
@@ -31,10 +35,12 @@ public abstract class Object {
         this.g = g;
         this.b = b;
         shape = s;
+        setVisible(true);
     }
 
     public Object(String s) {
         this.fromString(s);
+        setVisible(true);
     }
 
     public Object() {
@@ -46,6 +52,7 @@ public abstract class Object {
         this.b = 0;
         shape = "rect";
         alive = true;
+        setVisible(true);
     }
 
     public double getXPos() {
@@ -117,24 +124,39 @@ public abstract class Object {
     public void addYPos(double val) {
         setYPos(getYPos() + val * getSpeed());
     }
+    
+	public boolean isVisible() {
+		return visible;
+	}
+
+	public void setVisible(boolean visible) {
+		this.visible = visible;
+	}
 
     //takes all parameters and returns them in a String seperatet by a " "
     @Override
     public String toString() {
-        String ret = "";
-        ret += xPos;
-        ret += " " + yPos;
-        ret += " " + hitBoxWidth;
-        ret += " " + hitBoxHeight;
-        ret += " " + r;
-        ret += " " + g;
-        ret += " " + b;
-        ret += " " + shape;
+		String ret = "";
+    	
+    	//add Object paras only if the object is still visible
+    	if(isVisible()) {
+            ret += xPos;
+            ret += " " + yPos;
+            ret += " " + hitBoxWidth;
+            ret += " " + hitBoxHeight;
+            ret += " " + r;
+            ret += " " + g;
+            ret += " " + b;
+            ret += " " + shape;
+            ret += "_";
+    	}
+    	
         return ret;
     }
 
     //create a Object from a string
     public void fromString(String t) {
+    	
         String[] a = t.split(" ");
         xPos = Double.valueOf(a[0]);
         yPos = Double.valueOf(a[1]);

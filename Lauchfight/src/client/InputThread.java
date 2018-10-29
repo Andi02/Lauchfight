@@ -39,14 +39,14 @@ public class InputThread extends Thread {
 			}
 
 			// move the x pos
-			actionsBuffer += "addX 1 " + x + "_";
-			actionsBuffer += "addY 1 " + y + "_";
+			actionsBuffer += "addX "+Client.player+" " + x + "_";
+			actionsBuffer += "addY "+Client.player+" " + y + "_";
 
 			if (Screen.MouseBut1) {
-				actionsBuffer += "attack 1 0 " + Screen.MouseX + " " + Screen.MouseY + "_";
+				actionsBuffer += "attack "+Client.player+" 0 " + Screen.MouseX + " " + Screen.MouseY + "_";
 			}
 			if (Screen.MouseBut2) {
-				actionsBuffer += "attack 1 1 " + Screen.MouseX + " " + Screen.MouseY + "_";
+				actionsBuffer += "attack "+Client.player+" 1 " + Screen.MouseX + " " + Screen.MouseY + "_";
 			}
 			
 			actions = actionsBuffer;

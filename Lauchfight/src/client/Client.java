@@ -18,6 +18,8 @@ public class Client {
 
     public static int screenX = 1600;
     public static int screenY = 1080;
+    
+    public static int player =1;
 
     public Canvas c;
 

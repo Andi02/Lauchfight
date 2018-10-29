@@ -33,11 +33,15 @@ public class ServerThread extends Thread{
     
     @Override
 	public void run(){
-        printWriter.println(Server.lfo.tickGame(input.nextLine()));
-        try{
-            Thread.sleep(1);
-        }catch(Exception e){}
-        run();
+    	
+    	while(true) {
+    		printWriter.println(Server.lfo.tickGame(input.nextLine()));
+    		
+            try{
+                Thread.sleep(1);
+            }catch(Exception e){}
+    	}
+        
     }
     
 }

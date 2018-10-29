@@ -85,7 +85,7 @@ public class LauchFightOnline{
         world = bufferWorld;
         //System.out.println(bufferWorld.size());
         //convert the world to a string and return it
-        String ret = bufferWorld.stream().map((o) -> o.toString() + "_").reduce("", String::concat);
+        String ret = bufferWorld.stream().map((o) -> o.toString()).reduce("", String::concat);
         
         return ret;
     }
@@ -114,7 +114,9 @@ public class LauchFightOnline{
                         ((Player) world.get(i)).addXPos(Integer.valueOf(commandParts[2]));
                     }
                 } catch (Exception e) {
-                    System.out.println("cannot cast to int");
+                	
+                	System.out.println(actions);
+                    System.out.println("cannot cast to int (addX)");
                 }
 
             } else if (commandParts[0].equals("addY")) {
@@ -131,7 +133,7 @@ public class LauchFightOnline{
                         ((Player) world.get(i)).addYPos(Integer.valueOf(commandParts[2]));
                     }
                 } catch (Exception e) {
-                    System.out.println("cannot cast to int");
+                    System.out.println("cannot cast to int (addY)");
                 }
 
             } else if (commandParts[0].equals("attack")) {
