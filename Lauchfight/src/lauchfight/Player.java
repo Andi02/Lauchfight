@@ -14,6 +14,7 @@ public class Player extends Object{
     
     
     //Effects
+    ArrayList<Effect> effects = new ArrayList<Effect>();
     
     
     //setters/getters/adders
@@ -40,6 +41,10 @@ public class Player extends Object{
     public AttackFactory getFactory(int in){
         return attackFactorys.get(in);
     }
+    
+    public void addEffect(Effect e) {
+    	effects.add(e);
+    }
 
 
     
@@ -63,6 +68,24 @@ public class Player extends Object{
             a.updateCoolDown();
         });
         
+        //buffer for effects
+        ArrayList<Effect> efBuff = new ArrayList<Effect>();
+        
+        //call the update on every effect!
+        effects.forEach((e) ->{
+        	
+        	//use the effect
+        	e.useEffectOn(this);
+        	
+        	//check if the effect is still active
+        	if(e.isActive()) {
+        		//if so, add it to the efBuff
+        		efBuff.add(e);
+        	}
+        	    	
+        });
+        
+        effects = efBuff;
         
     }
 

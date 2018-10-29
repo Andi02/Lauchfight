@@ -18,7 +18,7 @@ public class SpeeedFactory extends AttackFactory {
         //restet the cooldown
         this.setCoolDown(COOLDOWN);
         //return a new attack
-        return new Test(p,mouseX,mouseY);
+        return new Speeed(p,mouseX,mouseY);
     }
     
     @Override
