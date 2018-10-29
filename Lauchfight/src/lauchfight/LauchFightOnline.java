@@ -1,9 +1,9 @@
 package lauchfight;
 
 import java.util.ArrayList;
-import lauchfight.*;
-import lauchfight.attacks.TestFactory;
 import lauchfight.attacks.hunter.ShootArrowFactory;
+import lauchfight.attacks.mage.TeleportFactory;
+import lauchfight.attacks.soldier.PistolFactory;
 
 public class LauchFightOnline{
 
@@ -25,7 +25,7 @@ public class LauchFightOnline{
         //add the attackFactorys to the player
         p1.addAttackFactory(new ShootArrowFactory());
         p1.addAttackFactory(new ShootArrowFactory());
-        p2.addAttackFactory(new ShootArrowFactory());
+        p2.addAttackFactory(new TeleportFactory());
         p2.addAttackFactory(new ShootArrowFactory());
         //add the players to the world array
         world.add(p1);
@@ -55,6 +55,9 @@ public class LauchFightOnline{
 
             //check if any of the players collides with any of the attacks
             for (Player p : players) {
+            	
+            	//System.out.println(p.xPos+ " "+ p.yPos);
+            	
                 if (isColliding(o, p)) {
 
                     //check if the object the player collides with is a Attack
@@ -65,16 +68,21 @@ public class LauchFightOnline{
 
                 }
             }
+            
 
             //update the Object
             o.update();
+            
             //check if the is still alive
             if (o.getAlive()) {
+            	
                 //if it is add it to the bufferWorld
                 bufferWorld.add(o);
             }
-
+           
         }
+        //set the world to the buffer world
+        world = bufferWorld;
         //System.out.println(bufferWorld.size());
         //convert the world to a string and return it
         String ret = bufferWorld.stream().map((o) -> o.toString() + "_").reduce("", String::concat);
