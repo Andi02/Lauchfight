@@ -18,7 +18,7 @@ public class FireballExplosionFactory extends AttackFactory {
 		this.fireballY = fireballY;
 	}
 
-	private long COOLDOWN = 2000;
+	private long COOLDOWN = 1;
 
 	@Override
     public Attack createNew(Player p, int mouseX, int mouseY) {
