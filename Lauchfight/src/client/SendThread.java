@@ -11,7 +11,8 @@ public class SendThread extends Thread{
 	
 	public void run() {
 		
-		//Online: con = new Connection();
+		//Online: 
+		con = new Connection();
 		
 		//Ofline
 		lfo = new LauchFightOnline();
