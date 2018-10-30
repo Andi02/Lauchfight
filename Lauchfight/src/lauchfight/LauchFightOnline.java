@@ -2,6 +2,7 @@ package lauchfight;
 
 import java.util.ArrayList;
 import lauchfight.attacks.hunter.ShootArrowFactory;
+import lauchfight.attacks.lauch.LauchfeldFactory;
 import lauchfight.attacks.lauch.LauchwurfFactory;
 import lauchfight.attacks.mage.TeleportFactory;
 import lauchfight.attacks.soldier.PistolFactory;
@@ -13,7 +14,7 @@ public class LauchFightOnline{
     //holds all Objects
     //all players have to be at the beginning of the list
     public static ArrayList<Object> world = new ArrayList<Object>();
-
+    public static ObjectRegistry oR;
     public void setUp() {
 
         //create all the Players
@@ -30,11 +31,11 @@ public class LauchFightOnline{
         p3.setHitBoxHeight(50);
         p3.setHitBoxWidth(50);
         //add the attackFactorys to the player
-        p1.addAttackFactory(new LauchwurfFactory());
+        p1.addAttackFactory(new LauchfeldFactory());
         p1.addAttackFactory(new CardwurfFactory());
-        p2.addAttackFactory(new LauchwurfFactory());
+        p2.addAttackFactory(new LauchfeldFactory());
         p2.addAttackFactory(new CardwurfFactory());
-        p3.addAttackFactory(new LauchwurfFactory());
+        p3.addAttackFactory(new LauchfeldFactory());
         p3.addAttackFactory(new CardwurfFactory());
         
         //add the players to the world array
@@ -66,7 +67,9 @@ public class LauchFightOnline{
 
         //buffer in order to delete Objects
         ArrayList<Object> bufferWorld = new ArrayList<Object>();
-
+        
+        world.addAll(oR.getNewObjects());
+        
         //for every Object in the world
         for (Object o : world) {
 

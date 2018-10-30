@@ -14,7 +14,7 @@ public class Lauchfeld extends Attack {
 	private double time;
 	private LauchwurfSpawnFactory Factory = new LauchwurfSpawnFactory();
 
-	public Lauchfeld(Player pSend,int mouseX,int mouseY) {
+	public Lauchfeld(Player pSend, int mouseX, int mouseY) {
 
 		// the aim position
 		double xA = mouseX - pSend.getXPos() - 25;
@@ -41,21 +41,24 @@ public class Lauchfeld extends Attack {
 		// save the player that created the attack
 		this.setP(pSend);
 	}
+
 	@Override
 	public void update() {
-		if (this.getXPos() >= Client.screenX || this.getYPos() >= Client.screenY || this.getXPos() <= 0 || this.getYPos() <= 0) {
+		if (this.getXPos() >= Client.screenX || this.getYPos() >= Client.screenY || this.getXPos() <= 0
+				|| this.getYPos() <= 0) {
 			this.setAlive(false);
 		}
 		if (time >= 100)
 			time += 0.09143;
 		if (time >= 181)
 			this.setAlive(false);
-		
+
 		if (time <= 10)
 			time += 0.004;
 		if (time >= 8)
 			onCollision(this.getP());
-		
+		System.out.println(time);
+
 	}
 
 	@Override
@@ -65,41 +68,41 @@ public class Lauchfeld extends Attack {
 			switch ((int) time) {
 			case 8:
 				Factory.setCount(7);
-				LauchFightOnline.aR.setNewAttacks(Factory.create(this.getP()));
+				LauchFightOnline.oR.setNewObjects(Factory.createNew(this.getP(), 1, 1));
 				time = 100;
 			case 7:
 				Factory.setCount(6);
-				LauchFightOnline.aR.setNewAttacks(Factory.create(this.getP()));
+				LauchFightOnline.oR.setNewObjects(Factory.createNew(this.getP(), 1, 1));
 				if (time < 100)
 					time = 110;
 			case 6:
 				Factory.setCount(5);
-				LauchFightOnline.aR.setNewAttacks(Factory.create(this.getP()));
+				LauchFightOnline.oR.setNewObjects(Factory.createNew(this.getP(), 1, 1));
 				if (time < 100)
 					time = 120;
 			case 5:
 				Factory.setCount(4);
-				LauchFightOnline.aR.setNewAttacks(Factory.create(this.getP()));
+				LauchFightOnline.oR.setNewObjects(Factory.createNew(this.getP(), 1, 1));
 				if (time < 100)
 					time = 130;
 			case 4:
 				Factory.setCount(3);
-				LauchFightOnline.aR.setNewAttacks(Factory.create(this.getP()));
+				LauchFightOnline.oR.setNewObjects(Factory.createNew(this.getP(), 1, 1));
 				if (time < 100)
 					time = 140;
 			case 3:
 				Factory.setCount(2);
-				LauchFightOnline.aR.setNewAttacks(Factory.create(this.getP()));
+				LauchFightOnline.oR.setNewObjects(Factory.createNew(this.getP(), 1, 1));
 				if (time < 100)
 					time = 150;
 			case 2:
 				Factory.setCount(1);
-				LauchFightOnline.aR.setNewAttacks(Factory.create(this.getP()));
+				LauchFightOnline.oR.setNewObjects(Factory.createNew(this.getP(), 1, 1));
 				if (time < 100)
 					time = 160;
 			case 1:
 				Factory.setCount(0);
-				LauchFightOnline.aR.setNewAttacks(Factory.create(this.getP()));
+				LauchFightOnline.oR.setNewObjects(Factory.createNew(this.getP(), 1, 1));
 				if (time < 100)
 					time = 170;
 			case 0:
