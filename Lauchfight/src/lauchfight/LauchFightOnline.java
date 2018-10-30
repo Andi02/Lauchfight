@@ -17,30 +17,23 @@ public class LauchFightOnline{
     public void setUp() {
 
         //create all the Players
-        Player p1 = new Player(0.2,200);
-        Player p2 = new Player(0.2,200);
-        Player p3 = new Player(0.2,200);
+        Player p1 = new Player(0.2,20);
+        Player p2 = new Player(0.2,20);
         
         p1.setHitBoxHeight(50);
         p1.setHitBoxWidth(50);
         
         p2.setHitBoxHeight(50);
         p2.setHitBoxWidth(50);
-        
-        p3.setHitBoxHeight(50);
-        p3.setHitBoxWidth(50);
         //add the attackFactorys to the player
         p1.addAttackFactory(new LauchwurfFactory());
         p1.addAttackFactory(new CardwurfFactory());
         p2.addAttackFactory(new LauchwurfFactory());
         p2.addAttackFactory(new CardwurfFactory());
-        p3.addAttackFactory(new LauchwurfFactory());
-        p3.addAttackFactory(new CardwurfFactory());
         
         //add the players to the world array
         world.add(p1);
         world.add(p2);
-        world.add(p3);
     }
 
     public String tickGame(String action) {
