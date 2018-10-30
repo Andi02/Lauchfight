@@ -8,6 +8,7 @@ public class Server {
     static ServerSocket finalServerSocket;
     static ServerThread t2;
     static ServerThread t1;
+    static ServerThread t3;
     static LauchFightOnline lfo;
     
     public static void main(String[] args) {
@@ -32,6 +33,9 @@ public class Server {
 
         t2 = new ServerThread();
         t2.start();
+        
+        t3 = new ServerThread();
+        t3.start();
         
         
   

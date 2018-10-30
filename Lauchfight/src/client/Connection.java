@@ -17,7 +17,7 @@ public class Connection {
 
 	public Connection() {
 
-		final String host = "172.16.161.170";
+		final String host = "192.168.43.85";
 		final int portNumber = 8187;
 		System.out.println("Creating socketimport java.io.InputStreamReader; to '" + host + "' on port " + portNumber);
 		
