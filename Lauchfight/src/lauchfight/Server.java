@@ -52,7 +52,7 @@ public class Server {
     	while(true) {
     		lfo.gameLoop();	
     		try {
-    			Thread.sleep(1);
+    			Thread.sleep(10);
     		}catch(Exception e) {}
     	}
     	

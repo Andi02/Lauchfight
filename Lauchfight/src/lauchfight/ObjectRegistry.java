@@ -1,14 +1,14 @@
 package lauchfight;
 
+import java.util.ArrayList;
 import java.util.List;
 
 public class ObjectRegistry {
-	private List<Object> objects;
-	private List<Object> objectReturn;
+	private List<Object> objects = new ArrayList<Object>();
+	private List<Object> objectReturn = new ArrayList<Object>();
 
 	public List<Object> getNewObjects() {
 		objectReturn = objects;
-		objects.clear();
 		return objectReturn;
 	}
 

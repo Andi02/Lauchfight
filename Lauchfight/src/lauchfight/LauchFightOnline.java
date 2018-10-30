@@ -16,6 +16,8 @@ public class LauchFightOnline{
     public static ArrayList<Object> world = new ArrayList<Object>();
     public static ObjectRegistry oR;
     public void setUp() {
+    	
+    	oR = new ObjectRegistry();
 
         //create all the Players
         Player p1 = new Player(1,200);
