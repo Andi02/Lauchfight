@@ -1,13 +1,14 @@
 package lauchfight;
 
 import java.net.ServerSocket;
+import java.util.ArrayList;
 
 
 public class Server {
     
     static ServerSocket finalServerSocket;
-    static ServerThread t2;
-    static ServerThread t1;
+    
+    static ArrayList<ServerThread> th = new ArrayList<ServerThread>();
     static LauchFightOnline lfo;
     
     public static void main(String[] args) {
@@ -27,14 +28,26 @@ public class Server {
         finalServerSocket = serverSocket;
 
         //for every player that wants to connect to the server
-        t1 = new ServerThread();
-        t1.start();
-
-        t2 = new ServerThread();
-        t2.start();
+        th.add(new ServerThread());
+        th.add(new ServerThread());
+        th.add(new ServerThread());
         
+        th.stream().forEach((a) -> {
+        	a.start();
+        });
         
-  
+    }
+    
+    
+    public void gameLoop() {
+    	
+    	while(true) {
+    		
+    		lfo.gameLoop();
+    		
+    		
+    	}
+    	
     }
     
 }
