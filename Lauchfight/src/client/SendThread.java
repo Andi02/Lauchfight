@@ -15,14 +15,15 @@ public class SendThread extends Thread{
 		con = new Connection();
 		
 		//Ofline
-		lfo = new LauchFightOnline();
+		//lfo = new LauchFightOnline();
 
-        lfo.setUp();
+        //lfo.setUp();
 
 		while(true) {
-			//Online: String[] pos = con.readWrite(InputThread.actions).split("_");
+			//Online: 
+			String[] pos = con.readWrite(InputThread.actions).split("_");
 			//Ofline: 
-			String[] pos = lfo.tickGame(InputThread.actions).split("_");
+			//String[] pos = lfo.tickGame(InputThread.actions).split("_");
 			ArrayList<FixObject> buff = new ArrayList<FixObject>();
 			
 			for (int i = 0; i < pos.length; i++) {
