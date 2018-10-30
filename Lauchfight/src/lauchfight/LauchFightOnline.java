@@ -6,6 +6,7 @@ import lauchfight.attacks.lauch.LauchwurfFactory;
 import lauchfight.attacks.mage.TeleportFactory;
 import lauchfight.attacks.soldier.PistolFactory;
 import lauchfight.attacks.soldier.SpeeedFactory;
+import lauchfight.attacks.trickster.CardwurfFactory;
 
 public class LauchFightOnline{
 
@@ -25,10 +26,10 @@ public class LauchFightOnline{
         p2.setHitBoxHeight(50);
         p2.setHitBoxWidth(50);
         //add the attackFactorys to the player
-        p1.addAttackFactory(new ShootArrowFactory());
-        p1.addAttackFactory(new ShootArrowFactory());
-        p2.addAttackFactory(new SpeeedFactory());
+        p1.addAttackFactory(new LauchwurfFactory());
+        p1.addAttackFactory(new CardwurfFactory());
         p2.addAttackFactory(new LauchwurfFactory());
+        p2.addAttackFactory(new CardwurfFactory());
         
         //add the players to the world array
         world.add(p1);
