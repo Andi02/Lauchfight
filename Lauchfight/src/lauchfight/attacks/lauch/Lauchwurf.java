@@ -63,7 +63,6 @@ public class Lauchwurf extends Attack {
 
 	@Override
 	public void update() {
-		System.out.println(vX + "  " + vY);
 		addX(vX);
 		addY(vY);
 
