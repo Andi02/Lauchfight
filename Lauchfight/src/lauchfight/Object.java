@@ -140,13 +140,13 @@ public abstract class Object {
     	
     	//add Object paras only if the object is still visible
     	if(isVisible()) {
-            ret += xPos;
-            ret += " " + yPos;
-            ret += " " + hitBoxWidth;
-            ret += " " + hitBoxHeight;
-            ret += " " + r;
-            ret += " " + g;
-            ret += " " + b;
+            ret += (int) xPos;
+            ret += " " + (int) yPos;
+            ret += " " + (int) hitBoxWidth;
+            ret += " " + (int) hitBoxHeight;
+            ret += " " + (int) r;
+            ret += " " + (int) g;
+            ret += " " + (int) b;
             ret += " " + shape;
             ret += "_";
     	}
