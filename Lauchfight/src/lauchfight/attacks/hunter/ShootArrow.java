@@ -1,4 +1,5 @@
 package lauchfight.attacks.hunter;
+
 import lauchfight.*;
 import java.awt.Graphics;
 
@@ -11,6 +12,7 @@ public class ShootArrow extends Attack {
 
 	private double vX;
 	private double vY;
+	private int dir;
 
 	public void addX(double a) {
 		this.setXPos((getXPos() + a * speed));
@@ -20,25 +22,84 @@ public class ShootArrow extends Attack {
 		this.setYPos((getYPos() + a * speed));
 	}
 
-	public ShootArrow(Player pSend,int mouseX,int mouseY) {
+	public ShootArrow(Player pSend, int mouseX, int mouseY) {
 
-		//set the speed
-        this.setSpeed(0.5);
+		// set the speed
+		this.setSpeed(0.5);
 
-        //set the starting pos
-        this.setXPos(pSend.getXPos());
-        this.setYPos(pSend.getYPos());
+		// set the starting pos
+		this.setXPos(pSend.getXPos() + 20);
+		this.setYPos(pSend.getYPos() + 20);
 
-        // the aim position
-        double xA = mouseX - pSend.getXPos();
-        double yA = mouseY - pSend.getYPos();
+		// the aim position
+		double xA = mouseX - pSend.getXPos() - 30;
+		double yA = mouseY - pSend.getYPos() - 60;
+		
+		double k = Math.sqrt((speed * speed) / (xA * xA + yA * yA));
+		
 
-        double k = Math.sqrt((this.getSpeed() * this.getSpeed()) / (xA * xA + yA * yA));
-        vX = xA * k;
-        vY = yA * k;
+		if (xA <= 0 && Math.abs(xA) > Math.abs(yA)) {
+			if (Math.abs(yA) / Math.abs(xA) > 0.5 && yA >= 0) {
+				dir = 5;
+				vY = 1;
+				vX = -1;
+			} else if (Math.abs(yA) / Math.abs(xA) > 0.5 && yA < 0) {
+				dir = 7;
+				vX = -1;
+				vY = -1;
+			} else {
+				dir = 6;
+				vX = -1.414;
+			}
+		} else if (xA >= 0 && xA > Math.abs(yA)) {
+			if (Math.abs(yA) / xA > 0.5 && yA >= 0) {
+				dir = 3;
+				vX = 1;
+				vY = 1;
+			} else if (Math.abs(yA) / xA > 0.5 && yA < 0) {
+				dir = 1;
+				vY = -1;
+				vX = 1;
+			} else {
+				dir = 2;
+				vX = 1.414;
+			}
+		} else if (yA > 0) {
+			if (Math.abs(xA) / Math.abs(yA) > 0.5 && xA >= 0) {
+				dir = 3;
+				vX = 1;
+				vY = 1;
+			} else if (Math.abs(xA) / Math.abs(yA) > 0.5 && xA < 0) {
+				dir = 5;
+				vY = 1;
+				vX = -1;
+			} else {
+				dir = 4;
+				vY = 1.414;
 
-        // save the player that created the attack
-        this.setP(pSend);
+			}
+		} else {
+			if (Math.abs(xA) / yA > 0.5 && xA >= 0) {
+				dir = 1;
+				vY = -1;
+				vX = 1;
+
+			} else if (Math.abs(xA) / yA > 0.5 && xA < 0) {
+				dir = 7;
+				vX = -1;
+				vY = -1;
+			} else {
+				dir = 0;
+				vY = -1.414;
+			}
+		}
+
+		System.out.println(dir);
+		
+		
+
+		// save the player that created the attack
+		this.setP(pSend);
 	}
 
 	@Override
@@ -46,7 +107,8 @@ public class ShootArrow extends Attack {
 		addX(vX);
 		addY(vY);
 
-		if (this.getXPos() >= Client.screenX || this.getYPos() >= Client.screenY || this.getXPos() <= 0 || this.getYPos() <= 0) {
+		if (this.getXPos() >= Client.screenX || this.getYPos() >= Client.screenY || this.getXPos() <= 0
+				|| this.getYPos() <= 0) {
 			this.setAlive(false);
 		}
 
