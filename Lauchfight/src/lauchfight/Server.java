@@ -8,7 +8,10 @@ public class Server {
     
     static ServerSocket finalServerSocket;
     
-    static ArrayList<ServerThread> th = new ArrayList<ServerThread>();
+    static ServerThread t1;
+    static ServerThread t2;
+    static ServerThread t3;
+    
     static LauchFightOnline lfo;
     
     public static void main(String[] args) {
@@ -26,26 +29,31 @@ public class Server {
         }
 
         finalServerSocket = serverSocket;
+        t1 = new ServerThread();
+        t1.start();
+        t2 = new ServerThread();
+        t2.start();
+        t3 = new ServerThread();
+        t3.start();
 
         //for every player that wants to connect to the server
-        th.add(new ServerThread());
-        th.add(new ServerThread());
-        th.add(new ServerThread());
         
-        th.stream().forEach((a) -> {
-        	a.start();
-        });
+//        th.stream().forEach((a) -> {
+//        	a.start();
+//        });
+        
+        gameLoop();
         
     }
     
     
-    public void gameLoop() {
+    public static void gameLoop() {
     	
     	while(true) {
-    		
-    		lfo.gameLoop();
-    		
-    		
+    		lfo.gameLoop();	
+    		try {
+    			Thread.sleep(1);
+    		}catch(Exception e) {}
     	}
     	
     }

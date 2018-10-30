@@ -48,8 +48,11 @@ public class LauchFightOnline{
         //interpret the input
         interpret(action);
         //System.out.println(bufferWorld.size());
+
+        
+        ArrayList<Object> bufferWorld = world;
         //convert the world to a string and return it
-        String ret = world.stream().map((o) -> o.toString()).reduce("", String::concat);
+        String ret = bufferWorld.stream().map((o) -> o.toString()).reduce("", String::concat);
         
         return ret;
     }

@@ -28,6 +28,7 @@ public class ServerThread extends Thread{
             input = new Scanner(inputToServer, "UTF-8");
             printWriter = new PrintWriter(new OutputStreamWriter(outputFromServer, "UTF-8"), true);
         } catch (Exception ex) {
+        	System.out.println("Error while createing server thread");
         }
     }
     
