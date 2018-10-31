@@ -4,6 +4,8 @@ import java.awt.Color;
 import java.awt.Graphics;
 import java.util.concurrent.ThreadLocalRandom;
 
+import lauchfight.Attack;
+
 public class MinigunProjectile extends Attack {
 
 	private float speed = 1f;
@@ -51,16 +53,6 @@ public class MinigunProjectile extends Attack {
 		}
 	}
 
-	@Override
-	public Graphics draw(Graphics g) {
-
-		// if the attack is used do stuff
-
-		g.setColor(Color.lightGray);
-		g.fillRect((int) x, (int) y, width, height);
-
-		return g;
-	}
 
 	@Override
 	public void onCollision(Player playerHit) {

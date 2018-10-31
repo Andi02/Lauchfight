@@ -1,33 +1,26 @@
-package LauchFightOnline.attacks.soldier;
+package lauchfight.attacks.soldier;
 
+import lauchfight.Attack;
+import lauchfight.AttackFactory;
+import lauchfight.Player;
+import lauchfight.attacks.Test;
 
-public class MinigunFactory extends AttackFactory{
-    
-    private long COOLDOWN = 1000;
-    private long cooldownCounter = 1000;
+public class MinigunFactory extends AttackFactory {
 
-    public void addCooldown(long a){
-        if (cooldownCounter > 0) cooldownCounter += a;
-    }
-   
-    public boolean cooldownZero(){
-        if (cooldownCounter == 0) return true;
-        return false;    
-    }
-    
-    @Override
-    public void resetCooldown() {
-        cooldownCounter = COOLDOWN;
-    }
-    
-    public MinigunFactory(){}
+	private long COOLDOWN = 1500;
 
+	@Override
+	public Attack createNew(Player p, int mouseX, int mouseY) {
+		// restet the cooldown
+		this.setCoolDown(COOLDOWN);
+		// return a new attack
+		return new Minigun(p, mouseX, mouseY);
+	}
 
-    @Override
-    public Attack create(Player pSend) {
-        return new Minigun(pSend);
-    }
+	@Override
+	public void updateCoolDown() {
+		if (this.getCoolDown() > 0)
+			this.setCoolDown(this.getCoolDown() - 1);
+	}
 
-    
-    
 }

@@ -13,7 +13,7 @@ public class Knife extends Attack {
 	private int rY;
 	private float speedPlayer;
 
-	public Knife(Player pSend,int mouseX,int mouseY) {
+	public Knife(Player pSend, int mouseX, int mouseY) {
 
 		speedPlayer = (float) pSend.getSpeed();
 
@@ -64,7 +64,6 @@ public class Knife extends Attack {
 		counter++;
 
 	}
-
 
 	@Override
 	public void onCollision(Player playerHit) {

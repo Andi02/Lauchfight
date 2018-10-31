@@ -40,6 +40,7 @@ public class LauchwurfSpawn extends Attack {
 		this.lauchfeldX = lauchfeldX;
 		this.lauchfeldY = lauchfeldY;
 	}
+
 	@Override
 	public void update() {
 		if (count > -1 && count < 10)

@@ -27,7 +27,6 @@ public class FrozenBolt extends Attack {
 		setHitBoxHeight(30);
 		setHitBoxWidth(30);
 
-
 		double xA = mouseX - pSend.getXPos() - 30;
 		double yA = mouseY - pSend.getYPos() - 60;
 
@@ -46,12 +45,12 @@ public class FrozenBolt extends Attack {
 		addX(vX);
 		addY(vY);
 
-		if (this.getXPos() >= Client.screenX || this.getYPos() >= Client.screenY || this.getXPos() <= 0 || this.getYPos() <= 0) {
+		if (this.getXPos() >= Client.screenX || this.getYPos() >= Client.screenY || this.getXPos() <= 0
+				|| this.getYPos() <= 0) {
 			this.setAlive(false);
 		}
 
 	}
-
 
 	@Override
 	public void onCollision(Player playerHit) {

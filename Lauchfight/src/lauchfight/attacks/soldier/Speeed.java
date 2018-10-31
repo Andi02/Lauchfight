@@ -10,18 +10,19 @@ public class Speeed extends Attack {
 
 	private int counter = 2500;
 
-	public Speeed(Player pSend,int mouseX,int mouseY) {
+	public Speeed(Player pSend, int mouseX, int mouseY) {
 
-		//give the player that created the attack the speed effect
+		// give the player that created the attack the speed effect
 		pSend.addEffect(new SpeedEffect());
-		
+
 	}
 
 	@Override
-	public void update() {}
-
+	public void update() {
+	}
 
 	@Override
-	public void onCollision(Player playerHit) {}
+	public void onCollision(Player playerHit) {
+	}
 
 }

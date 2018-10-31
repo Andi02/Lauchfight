@@ -33,7 +33,7 @@ public class LauchFightOnline{
         p3.setHitBoxHeight(50);
         p3.setHitBoxWidth(50);
         //add the attackFactorys to the player
-        p1.addAttackFactory(new LauchfeldFactory());
+        p1.addAttackFactory(new LauchwurfFactory());
         p1.addAttackFactory(new CardwurfFactory());
         p2.addAttackFactory(new LauchfeldFactory());
         p2.addAttackFactory(new CardwurfFactory());
@@ -51,10 +51,9 @@ public class LauchFightOnline{
         interpret(action);
         //System.out.println(bufferWorld.size());
 
-        
-        ArrayList<Object> bufferWorld = world;
+        gameLoop();
         //convert the world to a string and return it
-        String ret = bufferWorld.stream().map((o) -> o.toString()).reduce("", String::concat);
+        String ret = world.stream().map((o) -> o.toString()).reduce("", String::concat);
         
         return ret;
     }

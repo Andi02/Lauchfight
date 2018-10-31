@@ -22,11 +22,11 @@ public class Cardwurf extends Attack {
 		this.setYPos((getYPos() + a * speed));
 	}
 
-	public Cardwurf(Player pSend,int mouseX,int mouseY) {
+	public Cardwurf(Player pSend, int mouseX, int mouseY) {
 
 		// the aim position
 		double xA = mouseX - pSend.getXPos() - 30;
-		double yA = mouseY- pSend.getYPos() - 60;
+		double yA = mouseY - pSend.getYPos() - 60;
 
 		this.setXPos(pSend.getXPos() + 25);
 		this.setYPos(pSend.getYPos() + 25);
@@ -44,12 +44,12 @@ public class Cardwurf extends Attack {
 		addX(vX);
 		addY(vY);
 
-		if (this.getXPos() >= Client.screenX || this.getYPos() >= Client.screenY || this.getXPos() <= 0 || this.getYPos() <= 0) {
+		if (this.getXPos() >= Client.screenX || this.getYPos() >= Client.screenY || this.getXPos() <= 0
+				|| this.getYPos() <= 0) {
 			this.setAlive(false);
 		}
 
 	}
-
 
 	@Override
 	public void onCollision(Player playerHit) {

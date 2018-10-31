@@ -22,7 +22,7 @@ public class Lauchwurf extends Attack {
 		this.setYPos((getYPos() + a * speed));
 	}
 
-	public Lauchwurf(Player pSend,int mouseX,int mouseY) {
+	public Lauchwurf(Player pSend, int mouseX, int mouseY) {
 
 		// the aim position
 		double xA = mouseX - pSend.getXPos() - 25;
@@ -65,8 +65,8 @@ public class Lauchwurf extends Attack {
 	public void update() {
 		addX(vX);
 		addY(vY);
-
-		if (this.getXPos() >= Client.screenX || this.getYPos() >= Client.screenY || this.getXPos() <= 0 || this.getYPos() <= 0) {
+		if (this.getXPos() >= Client.screenX || this.getYPos() >= Client.screenY || this.getXPos() <= 0
+				|| this.getYPos() <= 0) {
 			this.setAlive(false);
 		}
 

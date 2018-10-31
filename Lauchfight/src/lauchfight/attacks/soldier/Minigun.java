@@ -6,6 +6,7 @@ import java.awt.MouseInfo;
 import java.util.List;
 
 import lauchfight.Attack;
+import lauchfight.LauchFightOnline;
 import lauchfight.Player;
 
 public class Minigun extends Attack {
@@ -14,7 +15,7 @@ public class Minigun extends Attack {
 	private int count;
 	private MinigunProjectileFactory Factory = new MinigunProjectileFactory();
 
-	public Minigun(Player pSend) {
+	public Minigun(Player pSend, int mouseX, int mouseY) {
 
 		// save the player that created the attack
 		this.setP(pSend);
@@ -32,7 +33,7 @@ public class Minigun extends Attack {
 
 		count += 1;
 		if (count % 10 == 0) {
-			LauchFightOnline.aR.setNewAttacks(Factory.create(this.getP()));
+			LauchFightOnline.oR.setNewObjects(Factory.createNew(this.getP()));
 		}
 		if (count == 1000) {
 			this.setAlive(false);
@@ -40,7 +41,6 @@ public class Minigun extends Attack {
 		}
 
 	}
-
 
 	@Override
 	public void onCollision(Player playerHit) {

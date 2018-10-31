@@ -21,7 +21,7 @@ public class Pistol extends Attack {
 		this.setYPos((getYPos() + a * speed));
 	}
 
-	public Pistol(Player pSend,int mouseX,int mouseY) {
+	public Pistol(Player pSend, int mouseX, int mouseY) {
 
 		System.out.println(pSend.getXPos() + " " + pSend.getYPos());
 		// the aim position
@@ -44,12 +44,12 @@ public class Pistol extends Attack {
 		addX(vX);
 		addY(vY);
 
-		if (this.getXPos() >= Client.screenX || this.getYPos() >= Client.screenY || this.getXPos() <= 0 || this.getYPos() <= 0) {
+		if (this.getXPos() >= Client.screenX || this.getYPos() >= Client.screenY || this.getXPos() <= 0
+				|| this.getYPos() <= 0) {
 			this.setAlive(false);
 		}
 
 	}
-
 
 	@Override
 	public void onCollision(Player playerHit) {
