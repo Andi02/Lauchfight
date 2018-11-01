@@ -1,10 +1,5 @@
 package lauchfight.attacks.soldier;
 
-import java.awt.Color;
-import java.awt.Graphics;
-import java.awt.MouseInfo;
-import java.util.List;
-
 import lauchfight.Attack;
 import lauchfight.LauchFightOnline;
 import lauchfight.Player;
@@ -14,6 +9,7 @@ public class Minigun extends Attack {
 	private double pSpeed;
 	private int count;
 	private MinigunProjectileFactory Factory = new MinigunProjectileFactory();
+	private int mouseX, mouseY;
 
 	public Minigun(Player pSend, int mouseX, int mouseY) {
 
@@ -21,19 +17,17 @@ public class Minigun extends Attack {
 		this.setP(pSend);
 		pSpeed = pSend.getSpeed();
 		this.getP().setSpeed(0f);
+
+		this.setXPos(pSend.getXPos() + 25 - this.getHitBoxWidth() / 2);
+		this.setYPos(pSend.getYPos() + 25 - this.getHitBoxHeight() / 2);
 	}
 
 	@Override
 	public void update() {
-		Screen.MouseX = (int) MouseInfo.getPointerInfo().getLocation().getX();
-		Screen.MouseY = (int) MouseInfo.getPointerInfo().getLocation().getY();
-
-		this.x = this.getP().getX() + 13;
-		this.y = this.getP().getY() + 13;
 
 		count += 1;
 		if (count % 10 == 0) {
-			LauchFightOnline.oR.setNewObjects(Factory.createNew(this.getP()));
+			LauchFightOnline.oR.setNewObjects(Factory.createNew(this.getP(), mouseX, mouseY));
 		}
 		if (count == 1000) {
 			this.setAlive(false);
